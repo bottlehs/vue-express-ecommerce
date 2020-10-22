@@ -31,5 +31,8 @@ db.faqs = require("./faqs.model.js")(sequelize, Sequelize);
 db.inquires = require("./inquires.model.js")(sequelize, Sequelize);
 db.posts = require("./posts.model.js")(sequelize, Sequelize);
 db.comments = require("./comments.model.js")(sequelize, Sequelize);
+db.products = require("./products.model.js")(sequelize, Sequelize);
+db.productsOptions = require("./products.options.model.js")(sequelize, Sequelize);
+db.carts = require("./carts.model.js")(sequelize, Sequelize);
 
 module.exports = db;
