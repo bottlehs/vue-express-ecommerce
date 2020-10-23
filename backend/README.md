@@ -1,5 +1,7 @@
 # vue-express-ecommerce
 
+nuxt.js 사용예정
+
 ## Project setup
 
 ```
