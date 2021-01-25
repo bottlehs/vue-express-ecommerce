@@ -24,6 +24,9 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BIGINT(20),
       allowNull: false,
     },
+    /**
+     * TODO : 국가, 도시, 우변번호, 상세주소, 전화번호, 받는사람등 정보 필요
+     */    
     status: {
       /**
        * 상태
