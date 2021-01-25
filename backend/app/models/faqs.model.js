@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Tutorial = sequelize.define("faqs", {
+  const Faq = sequelize.define("faqs", {
     question: {
       type: Sequelize.TEXT,
       allowNull: false,
@@ -15,5 +15,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  return Tutorial;
+  return Faq;
 };
