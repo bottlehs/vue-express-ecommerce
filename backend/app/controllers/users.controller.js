@@ -48,6 +48,7 @@ exports.create = (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
+    ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
   };
 
   User.findOne({ where: { email: user.email } })

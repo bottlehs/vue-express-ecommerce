@@ -25,7 +25,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.users = require("./users.model.js")(sequelize, Sequelize);
 db.faqs = require("./faqs.model.js")(sequelize, Sequelize);
 db.inquires = require("./inquires.model.js")(sequelize, Sequelize);

@@ -24,6 +24,7 @@ exports.create = (req, res, next) => {
   const faq = {
     question: req.body.question,
     answer: req.body.answer,
+    ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
   };
 
   // Save Faq in the database
