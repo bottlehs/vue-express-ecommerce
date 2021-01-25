@@ -61,6 +61,12 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       defaultValue: "USER",
     },
+    ipAddress: {
+      /**
+       * 아이피주소 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },    
   });
 
   return user;
