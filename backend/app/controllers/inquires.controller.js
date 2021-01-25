@@ -26,6 +26,7 @@ exports.create = (req, res, next) => {
     usersId: req.user.id,
     question: req.body.question,
     answer: req.body.answer,
+    ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
   };
 
   // Save Inquire in the database
