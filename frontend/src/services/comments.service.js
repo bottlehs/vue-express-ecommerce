@@ -9,6 +9,31 @@ class CommentsService {
       headers: authHeader(),
     });
   }
+  findOne(id) {
+    return http.get(SERVICE_API_URL+'/'+id, {
+      headers: authHeader(),
+    });    
+  }
+  update(id, params = {}) {
+    return http.put(SERVICE_API_URL+'/'+id, params, {
+      headers: authHeader(),
+    });
+  }
+  delete(id) {
+    return http.delete(SERVICE_API_URL+'/'+id, {
+      headers: authHeader(),
+    });
+  }  
+  deleteAll() {
+    return http.delete(SERVICE_API_URL, {
+      headers: authHeader(),
+    });
+  }
+  create() {
+    return http.post(SERVICE_API_URL, params, {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new CommentsService();
