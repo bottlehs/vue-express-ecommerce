@@ -6,15 +6,61 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BIGINT(20),
       allowNull: false,
     },
-    name: {
+    title: {
       /**
        * 주소지명 */          
       type: Sequelize.STRING(20),
       allowNull: false,
     },
-    /**
-     * TODO : 국가, 도시, 우변번호, 상세주소, 전화번호, 받는사람등 정보 필요
-     */    
+
+    name: {
+      /**
+       * 주문자 이름 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },
+    email: {
+      /**
+       * 주문자 Email */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },
+    tel: {
+      /**
+       * 주문자 연락처 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },
+    country: {
+      /**
+       * 주문자 국가 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },
+    address: {
+      /**
+       * 주문자 주소 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },    
+    detailAddress: {
+      /**
+       * 주문자 상세 주소 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },
+    postcode: {
+      /**
+       * 주문자 우편번호 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },
+    memo: {
+      /**
+       * 메모 */            
+      type: Sequelize.TEXT,
+      allowNull: false,
+    },
     status: {
       /**
        * 상태

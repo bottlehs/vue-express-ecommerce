@@ -1,5 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
   const Delivery = sequelize.define("delivery", {
+    usersId: {
+      /**
+       * users id (후보키) */             
+      type: Sequelize.BIGINT(20),
+      allowNull: false,
+    },    
     purchasesId: {
       /**
        * purchases id (후보키) */             
