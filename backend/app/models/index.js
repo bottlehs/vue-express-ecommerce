@@ -35,5 +35,6 @@ db.productsOptions = require("./products.options.model.js")(sequelize, Sequelize
 db.carts = require("./carts.model.js")(sequelize, Sequelize);
 db.addresses = require("./addresses.model.js")(sequelize, Sequelize);
 db.purchases = require("./purchases.model.js")(sequelize, Sequelize);
+db.deliveries = require("./deliveries.model.js")(sequelize, Sequelize);
 
 module.exports = db;
