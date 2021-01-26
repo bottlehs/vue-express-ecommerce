@@ -1,5 +1,5 @@
 const db = require("../models");
-const Faq = db.faq;
+const Faq = db.faqs;
 const Op = db.Sequelize.Op;
 const Pagination = require("../utils/pagination");
 
