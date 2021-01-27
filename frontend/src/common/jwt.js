@@ -1,16 +1,15 @@
-const ID_TOKEN_KEY = "id_token";
+const ID_TOKEN_KEY = "id_access_token";
 const ID_REFRESH_TOKEN_KEY = "id_refresh_token";
 
-export const getToken = () => {
+export const getAccessToken = () => {
   return window.localStorage.getItem(ID_TOKEN_KEY);
 };
 
-export const saveToken = (token) => {
+export const saveAccessToken = (token) => {
   window.localStorage.setItem(ID_TOKEN_KEY, token);
 };
 
-export const destroyToken = () => {
-  console.log("destroyToken");
+export const destroyAccessToken = () => {
   window.localStorage.removeItem(ID_TOKEN_KEY);
 };
 
@@ -27,9 +26,9 @@ export const destroyRefreshToken = () => {
 };
 
 export default {
-  getToken,
-  saveToken,
-  destroyToken,
+  getAccessToken,
+  saveAccessToken,
+  destroyAccessToken,
   getRefreshToken,
   saveRefreshToken,
   destroyRefreshToken,
