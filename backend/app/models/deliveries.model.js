@@ -1,18 +1,17 @@
 module.exports = (sequelize, Sequelize) => {
-  const Address = sequelize.define("addresses", {
+  const Delivery = sequelize.define("delivery", {
     usersId: {
       /**
-       * users id (후보키) */          
+       * users id (후보키) */             
+      type: Sequelize.BIGINT(20),
+      allowNull: false,
+    },    
+    purchasesId: {
+      /**
+       * purchases id (후보키) */             
       type: Sequelize.BIGINT(20),
       allowNull: false,
     },
-    title: {
-      /**
-       * 주소지명 */          
-      type: Sequelize.STRING(20),
-      allowNull: false,
-    },
-
     name: {
       /**
        * 주문자 이름 */            
@@ -54,39 +53,43 @@ module.exports = (sequelize, Sequelize) => {
        * 주문자 우편번호 */            
       type: Sequelize.STRING(100),
       allowNull: false,
-    },
+    },    
+    courier: {
+      /**
+       * 배송택배사 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },    
+    trackingNumber: {
+      /**
+       * 운송장번호 */            
+      type: Sequelize.STRING(100),
+      allowNull: false,
+    },        
     memo: {
       /**
-       * 메모 */            
+       * 주문자 메모 */            
       type: Sequelize.TEXT,
       allowNull: false,
     },
     status: {
       /**
        * 상태
-       * publish:공개
-       * */            
+       * ready:배송준비
+       * shipping:배송중
+       * completed:배송완료
+       * */           
       type: Sequelize.STRING(20),
       allowNull: false,
-      defaultValue: "publish",
-    },
-    basic: {
-      /**
-       * 기본여부
-       * Y:기본주소
-       * Y:주소 
-       * */        
-      type: Sequelize.STRING(1),
-      allowNull: false,
-      defaultValue: "N",
+      defaultValue: "payment",
     },
     ipAddress: {
       /**
-       * 아이피주소 */      
+       * 아이피주소 */            
       type: Sequelize.STRING(100),
       allowNull: false,
     },
   });
 
-  return Address;
+  return Delivery;
 };

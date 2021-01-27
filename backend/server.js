@@ -55,7 +55,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-require("./app/routes/turorial.routes")(app);
 require("./app/routes/users.routes")(app);
 require("./app/routes/inquires.routes")(app);
 require("./app/routes/oauth.routes")(app);
