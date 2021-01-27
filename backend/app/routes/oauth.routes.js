@@ -70,7 +70,7 @@ module.exports = (app) => {
    *         $ref: '#/components/res/InternalServerError'
    */
 
-  router.post("/token", oauth.create);
+  router.post("/login", oauth.create);
 
   app.use("/api/oauth", router);
 };
