@@ -29,7 +29,7 @@ class UsersService {
       headers: authHeader(),
     });
   }
-  create() {
+  create(params) {
     return http.post(SERVICE_API_URL, params, {
       headers: authHeader(),
     });

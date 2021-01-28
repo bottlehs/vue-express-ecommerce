@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import AuthService from "@/services/auth.service.js";
+import OauthService from "@/services/oauth.service.js";
 
 import Jwt from "@/common/jwt";
 Vue.use(Vuex);
@@ -8,19 +8,19 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: {},
-    isAuthenticated: !!Jwt.getToken(),
+    isAuthenticated: !!Jwt.getAccessToken(),
   },
   mutations: {
     LOGIN: function(state, data) {
       state.token = data;
       state.isAuthenticated = true;
-      Jwt.saveToken(data.accessToken);
+      Jwt.saveAccessToken(data.token);
       Jwt.saveRefreshToken(data.refreshToken);
     },
     LOGOUT: function(state) {
       state.token = null;
       state.isAuthenticated = false;
-      Jwt.destroyToken();
+      Jwt.destroyAccessToken();
       Jwt.destroyRefreshToken();
     },    
   },
@@ -33,7 +33,7 @@ export default new Vuex.Store({
   },
   actions: {
     LOGIN({ commit }, { email, password }) {
-      return AuthService.login({
+      return OauthService.login({
         email,
         password
       }).then(
@@ -43,16 +43,18 @@ export default new Vuex.Store({
             token: data.token,
             refreshToken: data.refreshToken
           });
+
+          return response;
         },
         (error) => {
           // status 404
-          console.log(error);
+          return error.response
         }
       );
     },
     // 로그아웃
     LOGOUT({ commit }, { provider, userId, accessToken }) {
-      return AuthService.logout({
+      return OauthService.logout({
         provider,
         userId,
         accessToken,

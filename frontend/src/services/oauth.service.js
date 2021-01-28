@@ -1,11 +1,10 @@
 import http from "@/common/http";
-import authHeader from "./auth.header";
-const SERVICE_API_URL = "/api/auth/";
+import authHeader from "@/common/auth.header";
+const SERVICE_API_URL = "/api/oauth";
 
 class OauthService {
   login(params = {}) {
-    return http.get(SERVICE_API_URL + "/login", {
-      params: params,
+    return http.post(SERVICE_API_URL + "/login", params, {
       headers: authHeader()
     });
   }

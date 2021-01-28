@@ -1,0 +1,19 @@
+{
+  "mypage": "마이페이지",
+  "createRoom": "대화방 생성",
+  "logout": "로그아웃",
+  "search": "검색",
+  "randJoinRoom": "랜덤입장",
+  "refresh": " 새로고침",
+  "getOut": " 대화방 나가기",
+  "noMore": "더 이상 {name}이 없습니다 :)",
+  "noResults": "{name} 검색 결과가 없습니다 :)",
+  "pullRefreshTipsDeactive": "당겨서 새로고침",
+  "pullRefreshTipsActive": "당겨서 새로고침",
+  "pullRefreshTipsStart": "새로고침중..",
+  "pullRefreshTipsBeforeDeactive": "새로고침을 완료했습니다",
+  "pushLoadTipsDeactive": "대화방 더보기",
+  "pushLoadTipsActive": "대화방 더보기",
+  "pushLoadTipsStart": "불러오는중..",
+  "pushLoadTipsBeforeDeactive": "더보기를 완료했습니다"
+}
