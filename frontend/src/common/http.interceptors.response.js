@@ -1,7 +1,4 @@
 import Jwt from "./jwt";
-// import router from "../router";
-// api
-import { API_URL } from "@/common/config";
 
 let isRefreshing = false;
 let failedQueue = [];
@@ -23,7 +20,11 @@ const interceptor = axiosInstance => error => {
   const originalRequest = error.config;
 
   if (error.response) {
-    if (error.response.status === 401 && !originalRequest._retry) {
+    console.log(originalRequest.url)
+    if (originalRequest.url.indexOf("/api/oauth/login") == 0) {
+      console.log('/oauth/login');
+      Promise.reject(error);
+    } else if (error.response.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise(function(resolve, reject) {
           failedQueue.push({ resolve, reject });
@@ -43,9 +44,8 @@ const interceptor = axiosInstance => error => {
       const refreshToken = Jwt.getRefreshToken();
       return new Promise((resolve, reject) => {
         // Refresh Token 으로 AccessToken 재발급 요청
-        /*
         _axios
-          .post("/auth/refresh", { certify: { provider, refreshToken } })
+          .post("/api/oauth/refresh", { certify: { refreshToken } })
           .then(({ data }) => {
             console.log("interceptor_ refresh--------");
             console.log(data);
@@ -65,10 +65,9 @@ const interceptor = axiosInstance => error => {
           .finally(() => {
             isRefreshing = false;
           });
-          */
       });
     } else if (error.response.status == 400) {
-      if (originalRequest.url.indexOf("/auth/refresh") == 0) {
+      if (originalRequest.url.indexOf("/api/oauth/refresh") == 0) {
         // 리프레시토큰 요청후 실패 > 로그아웃
       } else {
         if (error.response.data.msg) {

@@ -1,7 +1,7 @@
 import Jwt from "./jwt";
 
 export default function authHeader() {
-  let accessToken = Jwt.getToken();
+  let accessToken = Jwt.getAccessToken();
 
   if (accessToken) {
     return {

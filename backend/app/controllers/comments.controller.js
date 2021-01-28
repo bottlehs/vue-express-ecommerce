@@ -75,7 +75,7 @@ exports.findAll = (req, res) => {
 
   const { limit, offset } = Pagination.getPagination(page, size);
 
-  Comment.findAndCountAll({ where: condition })
+  Comment.findAndCountAll({ where: condition, limit: limit, offset: offset })
     .then((data) => {
       const response = Pagination.getPagingData(data, page, limit);
       res.send(response);
