@@ -6,25 +6,82 @@ const Pagination = require("../utils/pagination");
 // Create and Save a new Carts
 exports.create = (req, res, next) => {
   // Validate request
-  if (!req.body.title) {
+  if (req.body.usersId) {
+    // Users ID 유무 체크
+    const User = db.users;
+    User.findByPk(req.body.usersId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }
+    
+  if (!req.body.productsId) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
+  } else {
+    // Products ID 유무 체크
+    const Product = db.products;
+    Product.findByPk(req.body.productsId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
   }
 
-  if (!req.body.content) {
+  if (!req.body.productsOptionsId) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
+  } else {
+    // ProductsOptions ID 유무 체크
+    const ProductOption = db.productsOptions;
+    ProductOption.findByPk(req.body.productsOptionsId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
   }
+
 
   // Create a Cart
   const cart = {
-    usersId: req.user.id,
-    title: req.body.title,
-    content: req.body.content,
+    usersId: req.body.usersId ? req.body.usersId : req.user.id,
+    productsId: req.body.productsId,
+    productsOptionsId: req.body.productsOptionsId,
     ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
   };
 
