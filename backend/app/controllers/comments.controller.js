@@ -6,7 +6,26 @@ const Pagination = require("../utils/pagination");
 // Create and Save a new Comments
 exports.create = (req, res, next) => {
   // Validate request
-
+  if (req.body.usersId) {
+    // Users ID 유무 체크
+    const User = db.users;
+    User.findByPk(req.body.usersId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }
+  
   if (!req.body.postsId) {
     res.status(400).send({
       message: "Content can not be empty!",
@@ -39,10 +58,35 @@ exports.create = (req, res, next) => {
     return;
   }
 
+  if (!req.body.parent) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  } else {
+    // Comments ID 유무 체크
+    const Comment = db.comments;
+    Comment.findByPk(req.body.parent)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });    
+  }
+
   // Create a Comment
   const comment = {
     postsId: req.body.postsId,
-    usersId: req.user.id,
+    usersId: req.body.usersId ? req.body.usersId : req.user.id,
     content: req.body.content,
     parent: req.body.parent,
     ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,

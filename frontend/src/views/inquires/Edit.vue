@@ -31,9 +31,25 @@ export default {
        * id : 단건 식별자
        * item : 응답 데이터
        * wait : 로딩
+       * formWait : 폼 로딩
+       * form : 폼
        */      
       id: 0,
       wait: false,
+      formWait: false,
+      form: {
+        /**
+         * usersId: users id (후보키)
+         * question: 질문
+         * answer: 답변
+         * status: 상태
+         */
+        usersId: "",
+        question: "",
+        answer: "",
+        status: "",
+      },
+
       item: {},      
     };
   },
@@ -74,6 +90,21 @@ export default {
           response => {
             const { data } = response;
             this.item = data;
+
+            // form
+            if (Object.prototype.hasOwnProperty.call(data,"usersId")) {
+              this.form.usersId = data.usersId;
+            };
+            if (Object.prototype.hasOwnProperty.call(data,"question")) {
+              this.form.question = data.question;
+            };
+            if (Object.prototype.hasOwnProperty.call(data,"answer")) {
+              this.form.answer = data.answer;
+            };
+            if (Object.prototype.hasOwnProperty.call(data,"status")) {
+              this.form.status = data.status;
+            };
+
             this.wait = true;
           },
           error => {

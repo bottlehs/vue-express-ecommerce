@@ -37,7 +37,7 @@
             {{ errors[0] }}
           </label>
         </ValidationProvider>
-        <button type="submit" :disabled="invalid || formSending">로그인</button>      
+        <button type="submit" :disabled="invalid || formSend">로그인</button>      
       </form>
     </ValidationObserver>
   </div>
@@ -65,11 +65,11 @@ export default {
        * id : 단건 식별자
        * form : 폼 데이터
        * wait : 로딩
-       * formSending : 폼전송
+       * formWait : 폼전송
        */      
       id: 0,
       wait: false,
-      formSending: false,
+      formWait: false,
       form: {
         email: '',
         password: ''
@@ -104,11 +104,11 @@ export default {
     async onSubmit(evt) {
       evt.preventDefault();
 
-      this.formSending = true;
+      this.formWait = true;
       this.$store
         .dispatch("LOGIN", this.form)
         .then((response) => {
-          this.formSending = false;
+          this.formWait = false;
 
           if ( response.status == 200 ) {
             if (this.isAuthenticated) {

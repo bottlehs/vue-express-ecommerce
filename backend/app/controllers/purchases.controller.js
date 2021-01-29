@@ -6,25 +6,283 @@ const Pagination = require("../utils/pagination");
 // Create and Save a new Purchases
 exports.create = (req, res, next) => {
   // Validate request
-  if (!req.body.title) {
+  if (req.body.usersId) {
+    // Users ID 유무 체크
+    const User = db.users;
+    User.findByPk(req.body.usersId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }
+  
+  if (!req.body.cartsId) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  } else {
+    // Carts ID 유무 체크
+    const Cart = db.carts;
+    Cart.findByPk(req.body.cartsId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }  
+
+  if (!req.body.productsId) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  } else {
+    // Products ID 유무 체크
+    const Product = db.products;
+    Product.findByPk(req.body.productsId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }  
+  
+  if (!req.body.productsOptionsId) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  } else {
+    // ProductsOptions ID 유무 체크
+    const ProductOption = db.productsOptions;
+    ProductOption.findByPk(req.body.productsOptionsId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }    
+
+  if (!req.body.thirdPartyUid) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+
+  if (!req.body.merchantUid) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.method) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.amount) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.pgProvider) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.pgId) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+
+  if (!req.body.name) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.email) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.tel) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.country) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.address) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.detailAddress) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.postcode) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.customData) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.purchasesAt) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.receiptUrl) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.applyNumber) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
   }
 
-  if (!req.body.content) {
+  if (!req.body.vbankNumber) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
   }
-
+  
+  if (!req.body.vbankName) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.vbankHolder) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.vbankDate) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+  
+  if (!req.body.memo) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+    
   // Create a Purchase
   const purchase = {
-    usersId: req.user.id,
-    title: req.body.title,
-    content: req.body.content,
+    usersId: req.body.usersId ? req.body.usersId : req.user.id,
+    cartsId: req.body.cartsId,
+    productsId: req.body.productsId,
+    productsOptionsId: req.body.productsOptionsId,
+    thirdPartyUid: req.body.thirdPartyUid,
+    merchantUid: req.body.merchantUid,
+    method: req.body.method,
+    amount: req.body.amount,
+    pgProvider: req.body.pgProvider,
+    pgId: req.body.pgId,
+    name: req.body.name,
+    email: req.body.email,
+    tel: req.body.tel,
+    country: req.body.country,
+    address: req.body.address,
+    detailAddress: req.body.detailAddress,
+    postcode: req.body.postcode,
+    customData: req.body.customData,
+    purchasesAt: req.body.purchasesAt,
+    receiptUrl: req.body.receiptUrl,
+    applyNumber: req.body.applyNumber,
+    vbankNumber: req.body.vbankNumber,
+    vbankName: req.body.vbankName,
+    vbankHolder: req.body.vbankHolder,
+    vbankDate: req.body.vbankDate,
+    memo: req.body.memo,
     ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
   };
 

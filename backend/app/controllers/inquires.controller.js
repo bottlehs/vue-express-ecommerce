@@ -7,6 +7,26 @@ const Pagination = require("../utils/pagination");
 // Create and Save a new Inquire
 exports.create = (req, res, next) => {
   // Validate request
+  if (req.body.usersId) {
+    // Users ID 유무 체크
+    const User = db.users;
+    User.findByPk(req.body.usersId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }
+    
   if (!req.body.question) {
     res.status(400).send({
       message: "Content can not be empty!",
@@ -23,7 +43,7 @@ exports.create = (req, res, next) => {
 
   // Create a Inquire
   const inquire = {
-    usersId: req.user.id,
+    usersId: req.body.usersId ? req.body.usersId : req.user.id,
     question: req.body.question,
     answer: req.body.answer,
     ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
