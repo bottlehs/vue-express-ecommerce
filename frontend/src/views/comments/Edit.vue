@@ -31,10 +31,27 @@ export default {
        * id : 단건 식별자
        * item : 응답 데이터
        * wait : 로딩
+       * formWait : 폼전송
+       * form : 폼
        */      
       id: 0,
       wait: false,
-      item: {},      
+      formWait: false,
+      form: {
+        /**
+         * postsId: posts id (후보키)
+         * usersId: users id (후보키)
+         * parent: comments id (대댓글 부모키)
+         * content: 내용
+         * type: 유형
+         */
+        postsId: "",
+        usersId: "",
+        parent: "",
+        content: "",
+        type: ""
+      },
+      item: {},
     };
   },
   created() {
@@ -74,6 +91,24 @@ export default {
           response => {
             const { data } = response;
             this.item = data;
+            
+            // form
+            if (Object.prototype.hasOwnProperty.call(data,"postsId")) {
+              this.form.postsId = data.postsId;
+            };
+            if (Object.prototype.hasOwnProperty.call(data,"usersId")) {
+              this.form.usersId = data.usersId;
+            };
+            if (Object.prototype.hasOwnProperty.call(data,"parent")) {
+              this.form.parent = data.parent;
+            };
+            if (Object.prototype.hasOwnProperty.call(data,"content")) {
+              this.form.content = data.content;
+            };
+            if (Object.prototype.hasOwnProperty.call(data,"type")) {
+              this.form.type = data.type;
+            };
+
             this.wait = true;
           },
           error => {
