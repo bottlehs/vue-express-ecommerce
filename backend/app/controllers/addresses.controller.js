@@ -6,25 +6,110 @@ const Pagination = require("../utils/pagination");
 // Create and Save a new Addresses
 exports.create = (req, res, next) => {
   // Validate request
+  if (req.body.usersId) {
+    // Users ID 유무 체크
+    const User = db.users;
+    User.findByPk(req.body.usersId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }
+    
   if (!req.body.title) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }
+  }  
 
-  if (!req.body.content) {
+  if (!req.body.name) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }
+  }  
+  
+  if (!req.body.email) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+  
+  if (!req.body.tel) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+  
+  if (!req.body.address) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+  
+  if (!req.body.detailAddress) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+  
+  if (!req.body.postcode) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+  
+  if (!req.body.memo) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+  
+  if (!req.body.status) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }  
+  
+  if (!req.body.basic) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }    
 
   // Create a Address
   const addresses = {
-    usersId: req.user.id,
+    usersId: req.body.usersId ? req.body.usersId : req.user.id,
     title: req.body.title,
-    content: req.body.content,
+    name: req.body.name,
+    email: req.body.email,
+    tel: req.body.tel,
+    country: req.body.country,
+    address: req.body.address,
+    detailAddress: req.body.detailAddress,
+    postcode: req.body.postcode,
+    memo: req.body.memo,
+    status: req.body.status,
+    basic: req.body.basic,
     ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
   };
 
