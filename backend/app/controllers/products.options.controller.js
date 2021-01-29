@@ -6,6 +6,31 @@ const Pagination = require("../utils/pagination");
 // Create and Save a new ProductsOptions
 exports.create = (req, res, next) => {
   // Validate request
+  if (!req.body.productsId) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  } else {
+    // Posts ID 유무 체크
+    const Product = db.products;
+    Product.findByPk(req.body.productsId)
+      .then((data) => {
+        if (!data) {
+          res.status(400).send({
+            message: "Content can not be empty!",
+          });
+          return;
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Content can not be empty!",
+        });
+        return;
+      });
+  }
+
   if (!req.body.title) {
     res.status(400).send({
       message: "Content can not be empty!",
@@ -22,7 +47,7 @@ exports.create = (req, res, next) => {
 
   // Create a ProductOption
   const productOption = {
-    usersId: req.user.id,
+    productsId: req.body.productsId,
     title: req.body.title,
     content: req.body.content,
     ipAddress: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
