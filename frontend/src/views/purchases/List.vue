@@ -42,8 +42,167 @@ export default {
       },
       fields: [
         {
-          key: 'temp',
+          /**
+           * users id (후보키) */
+          key: 'usersId',
+          label: 'usersId'
+        },
+        {
+          /**
+           * carts id (후보키) */
+          key: 'cartsId',
+          label: 'cartsId'
+        },
+        {
+          /**
+           * products id (후보키) */
+          key: 'productsId',
+          label: 'productsId'
+        },
+        {
+          /**
+           * productsOptions id (후보키) */
+          key: 'productsOptionsId',
+          label: 'productsOptionsId'
+        },
+        {
+          /**
+           * 서드파티 거래 고유 번호 */
+          key: 'thirdPartyUid',
+          label: 'thirdPartyUid'
+        },
+        {
+          /**
+           * 가맹점에서 생성/관리하는 고유 주문번호 */
+          key: 'merchantUid',
+          label: 'merchantUid'
+        },
+        {
+          /**
+           * 결제수단 */
+          key: 'method',
+          label: 'method'
+        },
+        {
+          /**
+           * 결제금액	*/
+          key: 'amount',
+          label: 'amount'
+        },
+        {
+          /**
+           * 결제승인/시도된 PG사 */
+          key: 'pgProvider',
           label: 'temp'
+        },
+        {
+          /**
+           * PG사 거래고유번호 */
+          key: 'pgId',
+          label: 'pgId'
+        },
+        {
+          /**
+           * 주문자 이름 */
+          key: 'name',
+          label: 'name'
+        },
+        {
+          /**
+           * 주문자 Email */
+          key: 'email',
+          label: 'email'
+        },
+        {
+          /**
+           * 주문자 연락처 */
+          key: 'tel',
+          label: 'tel'
+        },
+        {
+          /**
+           * 주문자 국가 */
+          key: 'country',
+          label: 'country'
+        },
+        {
+          /**
+           * 주문자 주소 */
+          key: 'address',
+          label: 'address'
+        },
+        {
+          /**
+           * 주문자 상세 주소 */
+          key: 'detailAddress',
+          label: 'detailAddress'
+        },
+        {
+          /**
+           * 주문자 우편번호 */
+          key: 'postcode',
+          label: 'postcode'
+        },
+        {
+          /**
+           * 가맹점 임의 지정 데이터 */
+          key: 'customData',
+          label: 'customData'
+        },
+        {
+          /**
+           * 결제승인시각*/
+          key: 'purchasesAt',
+          label: 'purchasesAt'
+        },
+        {
+          /**
+           * PG사에서 발행되는 거래 매출전표 URL*/
+          key: 'receiptUrl',
+          label: 'receiptUrl'
+        },
+        {
+          /**
+           * 카드사 승인번호*/
+          key: 'applyNumber',
+          label: 'applyNumber'
+        },
+        {
+          /**
+           * 가상계좌 입금계좌번호*/
+          key: 'vbankNumber',
+          label: 'vbankNumber'
+        },
+        {
+          /**
+           * 가상계좌 은행명 */
+          key: 'vbankName',
+          label: 'vbankName'
+        },
+        {
+          /**
+           * 가상계좌 예금주*/
+          key: 'vbankHolder',
+          label: 'vbankHolder'
+        },
+        {
+          /**
+           * 가상계좌 입금기한*/
+          key: 'vbankDate',
+          label: 'vbankDate'
+        },
+        {
+          /**
+           * 주문자 메모 */
+          key: 'memo',
+          label: 'memo'
+        },
+        {
+          /**
+           * 상태
+           * */
+          key: 'status',
+          label: 'status'
         }
       ],
       items: [],
