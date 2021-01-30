@@ -1,5 +1,10 @@
 <template>
-  <div class="list"></div>
+  <div class="list">
+    <b-table striped hover :items="items" :fields="fields"></b-table>
+    <div class="overflow-auto">
+      <b-pagination-nav :link-gen="linkGen" :number-of-pages="totalPages" v-model="currentPage" align="center" @page-click="pageLink"></b-pagination-nav>
+    </div>
+  </div>
 </template>
 
 <script>
