@@ -1,0 +1,14 @@
+{
+  "title" : "쇼핑",
+  "dashboard" : "dashboard",
+  "users" : "users",
+  "purchases" : "purchases",
+  "products" : "products",
+  "posts" : "posts",
+  "inquires" : "inquires",
+  "faqs" : "faqs",
+  "deliveries" : "deliveries",
+  "comments" : "comments",
+  "carts" : "carts",
+  "addresses" : "addresses"
+}
