@@ -48,34 +48,58 @@ export default {
       },
       fields: [
         {
+          /**
+           * 이메일
+           */
           key: 'email',
           label: 'email'
         },
         {
+          /**
+           * 비밀번호
+           */
           key: 'password',
           label: 'password'
         },
         {
+          /**
+           * 이름
+           */
           key: 'firstname',
           label: 'firstname'
         },
         {
+          /**
+           * 성
+           */
           key: 'lastname',
           label: 'lastname'
         },
         {
+          /**
+           * 이름
+           */
           key: 'username',
           label: 'username'
         },
         {
+          /**
+           * 언어
+           */
           key: 'languege',
           label: 'languege'
         },
         {
+          /**
+           * 국가
+           */
           key: 'country',
           label: 'country'
         },
         {
+          /**
+           * 상태
+           */
           key: 'status',
           label: 'status'
         }
