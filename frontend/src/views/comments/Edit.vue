@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    CommentsEdit 
+    CommentsEdit
   </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
        * wait : 로딩
        * formWait : 폼전송
        * form : 폼
-       */      
+       */
+
       id: 0,
       wait: false,
       formWait: false,
@@ -51,7 +52,7 @@ export default {
         content: "",
         type: ""
       },
-      item: {},
+      item: {}
     };
   },
   created() {
@@ -59,10 +60,13 @@ export default {
      * created
      */
     if (
-      Object.prototype.hasOwnProperty.call(this.$router.currentRoute.params,"id")
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.params,
+        "id"
+      )
     ) {
       this.id = this.$router.currentRoute.params.id;
-      this.findOne();      
+      this.findOne();
     }
   },
   mounted() {
@@ -86,39 +90,38 @@ export default {
      * methods
      */
     findOne() {
-        this.wait = false;
-        CommentsService.findOne(this.id).then(
-          response => {
-            const { data } = response;
-            this.item = data;
-            
-            // form
-            if (Object.prototype.hasOwnProperty.call(data,"postsId")) {
-              this.form.postsId = data.postsId;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"usersId")) {
-              this.form.usersId = data.usersId;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"parent")) {
-              this.form.parent = data.parent;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"content")) {
-              this.form.content = data.content;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"type")) {
-              this.form.type = data.type;
-            };
+      this.wait = false;
+      CommentsService.findOne(this.id).then(
+        response => {
+          const { data } = response;
+          this.item = data;
 
-            this.wait = true;
-          },
-          error => {
-            console.log(error);
+          // form
+          if (Object.prototype.hasOwnProperty.call(data, "postsId")) {
+            this.form.postsId = data.postsId;
           }
-        );
-    }    
+          if (Object.prototype.hasOwnProperty.call(data, "usersId")) {
+            this.form.usersId = data.usersId;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "parent")) {
+            this.form.parent = data.parent;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "content")) {
+            this.form.content = data.content;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "type")) {
+            this.form.type = data.type;
+          }
+
+          this.wait = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

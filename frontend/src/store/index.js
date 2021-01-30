@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: {},
-    isAuthenticated: !!Jwt.getAccessToken(),
+    isAuthenticated: !!Jwt.getAccessToken()
   },
   mutations: {
     LOGIN: function(state, data) {
@@ -22,14 +22,14 @@ export default new Vuex.Store({
       state.isAuthenticated = false;
       Jwt.destroyAccessToken();
       Jwt.destroyRefreshToken();
-    },    
+    }
   },
   getters: {
     isAuthenticated(state) {
       console.log("isAuthenticated");
       console.log(state);
       return state.isAuthenticated;
-    },
+    }
   },
   actions: {
     LOGIN({ commit }, { email, password }) {
@@ -37,7 +37,7 @@ export default new Vuex.Store({
         email,
         password
       }).then(
-        (response) => {
+        response => {
           const { data } = response;
           commit("LOGIN", {
             token: data.token,
@@ -46,9 +46,9 @@ export default new Vuex.Store({
 
           return response;
         },
-        (error) => {
+        error => {
           // status 404
-          return error.response
+          return error.response;
         }
       );
     },
@@ -57,19 +57,19 @@ export default new Vuex.Store({
       return OauthService.logout({
         provider,
         userId,
-        accessToken,
+        accessToken
       }).then(
-        (response) => {
+        response => {
           const { data } = response;
           console.log(data);
           window.location.replace(data);
           commit("LOGOUT");
         },
-        (error) => {
+        error => {
           console.log(error);
         }
       );
-    },
+    }
   },
-  modules: {},
+  modules: {}
 });

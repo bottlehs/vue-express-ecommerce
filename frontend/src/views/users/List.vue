@@ -33,15 +33,15 @@ export default {
        * page : 검색결과 페이지 데이터
        * wait : 로딩
        */
-      wait: false,      
+      wait: false,
       search: {
         /**
          * page : 요청 페이지수
          * size : 요청 페이지별 데이터 수
          */
         page: 0,
-        size: 10,
-      },      
+        size: 10
+      },
       items: [],
       page: {
         /**
@@ -82,30 +82,29 @@ export default {
      * methods
      */
     findAll() {
-        this.wait = false;
+      this.wait = false;
 
-        const params = {
-          page: this.search.page,
-          size: this.search.size,          
-        };
+      const params = {
+        page: this.search.page,
+        size: this.search.size
+      };
 
-        UsersService.findAll(params).then(
-          response => {
-            const { data } = response;
-            this.page.totalItems = data.totalItems;
-            this.page.totalPages = data.totalPages;
-            this.page.currentPage = data.currentPage;
-            this.items = data.items;
-            this.wait = true;
-          },
-          error => {
-            console.log(error);
-          }
-        );
+      UsersService.findAll(params).then(
+        response => {
+          const { data } = response;
+          this.page.totalItems = data.totalItems;
+          this.page.totalPages = data.totalPages;
+          this.page.currentPage = data.currentPage;
+          this.items = data.items;
+          this.wait = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

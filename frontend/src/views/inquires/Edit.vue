@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    InquiresEdit   
+    InquiresEdit
   </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
        * wait : 로딩
        * formWait : 폼 로딩
        * form : 폼
-       */      
+       */
+
       id: 0,
       wait: false,
       formWait: false,
@@ -47,10 +48,10 @@ export default {
         usersId: "",
         question: "",
         answer: "",
-        status: "",
+        status: ""
       },
 
-      item: {},      
+      item: {}
     };
   },
   created() {
@@ -58,10 +59,13 @@ export default {
      * created
      */
     if (
-      Object.prototype.hasOwnProperty.call(this.$router.currentRoute.params,"id")
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.params,
+        "id"
+      )
     ) {
       this.id = this.$router.currentRoute.params.id;
-      this.findOne();      
+      this.findOne();
     }
   },
   mounted() {
@@ -85,36 +89,35 @@ export default {
      * methods
      */
     findOne() {
-        this.wait = false;
-        InquiresService.findOne(this.id).then(
-          response => {
-            const { data } = response;
-            this.item = data;
+      this.wait = false;
+      InquiresService.findOne(this.id).then(
+        response => {
+          const { data } = response;
+          this.item = data;
 
-            // form
-            if (Object.prototype.hasOwnProperty.call(data,"usersId")) {
-              this.form.usersId = data.usersId;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"question")) {
-              this.form.question = data.question;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"answer")) {
-              this.form.answer = data.answer;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"status")) {
-              this.form.status = data.status;
-            };
-
-            this.wait = true;
-          },
-          error => {
-            console.log(error);
+          // form
+          if (Object.prototype.hasOwnProperty.call(data, "usersId")) {
+            this.form.usersId = data.usersId;
           }
-        );
-    }    
+          if (Object.prototype.hasOwnProperty.call(data, "question")) {
+            this.form.question = data.question;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "answer")) {
+            this.form.answer = data.answer;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "status")) {
+            this.form.status = data.status;
+          }
+
+          this.wait = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

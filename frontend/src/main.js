@@ -1,15 +1,15 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
 // bootstrap-vue
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 // moment
 import moment from "moment";
@@ -38,11 +38,11 @@ localize("ko");
 Vue.component("ValidationProvider", ValidationProvider);
 Vue.component("ValidationObserver", ValidationObserver);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   i18n,
   router,
-  store,  
-  render: h => h(App),
-}).$mount('#app')
+  store,
+  render: h => h(App)
+}).$mount("#app");

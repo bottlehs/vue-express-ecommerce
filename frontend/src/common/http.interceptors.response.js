@@ -20,9 +20,9 @@ const interceptor = axiosInstance => error => {
   const originalRequest = error.config;
 
   if (error.response) {
-    console.log(originalRequest.url)
+    console.log(originalRequest.url);
     if (originalRequest.url.indexOf("/api/oauth/login") == 0) {
-      console.log('/oauth/login');
+      console.log("/oauth/login");
       Promise.reject(error);
     } else if (error.response.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {

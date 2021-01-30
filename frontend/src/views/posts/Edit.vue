@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    PostsEdit        
+    PostsEdit
   </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
        * wait : 로딩
        * formWait : 폼 로딩
        * form : 폼
-       */      
+       */
+
       id: 0,
       wait: false,
       formWait: false,
@@ -53,9 +54,9 @@ export default {
         status: "",
         commentsStatus: "",
         type: "",
-        commentsCount: "",
+        commentsCount: ""
       },
-      item: {},
+      item: {}
     };
   },
   created() {
@@ -63,7 +64,10 @@ export default {
      * created
      */
     if (
-      Object.prototype.hasOwnProperty.call(this.$router.currentRoute.params,"id")
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.params,
+        "id"
+      )
     ) {
       this.id = this.$router.currentRoute.params.id;
       this.findOne();
@@ -90,45 +94,44 @@ export default {
      * methods
      */
     findOne() {
-        this.wait = false;
-        PostsService.findOne(this.id).then(
-          response => {
-            const { data } = response;
-            this.item = data;
+      this.wait = false;
+      PostsService.findOne(this.id).then(
+        response => {
+          const { data } = response;
+          this.item = data;
 
-            // form
-            if (Object.prototype.hasOwnProperty.call(data,"usersId")) {
-              this.form.usersId = data.usersId;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"title")) {
-              this.form.title = data.title;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"content")) {
-              this.form.content = data.content;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"status")) {
-              this.form.status = data.status;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"commentsStatus")) {
-              this.form.commentsStatus = data.commentsStatus;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"type")) {
-              this.form.type = data.type;
-            };                 
-            if (Object.prototype.hasOwnProperty.call(data,"commentsCount")) {
-              this.form.commentsCount = data.commentsCount;
-            };
-
-            this.wait = true;
-          },
-          error => {
-            console.log(error);
+          // form
+          if (Object.prototype.hasOwnProperty.call(data, "usersId")) {
+            this.form.usersId = data.usersId;
           }
-        );
-    }    
+          if (Object.prototype.hasOwnProperty.call(data, "title")) {
+            this.form.title = data.title;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "content")) {
+            this.form.content = data.content;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "status")) {
+            this.form.status = data.status;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "commentsStatus")) {
+            this.form.commentsStatus = data.commentsStatus;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "type")) {
+            this.form.type = data.type;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "commentsCount")) {
+            this.form.commentsCount = data.commentsCount;
+          }
+
+          this.wait = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

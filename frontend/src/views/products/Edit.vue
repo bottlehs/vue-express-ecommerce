@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    ProductsEdit        
+    ProductsEdit
   </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
        * wait : 로딩
        * formWait : 폼 로딩
        * form : 폼
-       */      
+       */
+
       id: 0,
       wait: false,
       formWait: false,
@@ -46,8 +47,8 @@ export default {
         usersId: "",
         name: "",
         status: ""
-      },            
-      item: {},      
+      },
+      item: {}
     };
   },
   created() {
@@ -55,10 +56,13 @@ export default {
      * created
      */
     if (
-      Object.prototype.hasOwnProperty.call(this.$router.currentRoute.params,"id")
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.params,
+        "id"
+      )
     ) {
       this.id = this.$router.currentRoute.params.id;
-      this.findOne();      
+      this.findOne();
     }
   },
   mounted() {
@@ -82,33 +86,32 @@ export default {
      * methods
      */
     findOne() {
-        this.wait = false;
-        ProductsService.findOne(this.id).then(
-          response => {
-            const { data } = response;
-            this.item = data;
-            
-            // form
-            if (Object.prototype.hasOwnProperty.call(data,"usersId")) {
-              this.form.usersId = data.usersId;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"name")) {
-              this.form.name = data.name;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"status")) {
-              this.form.status = data.status;
-            };            
-                        
-            this.wait = true;
-          },
-          error => {
-            console.log(error);
+      this.wait = false;
+      ProductsService.findOne(this.id).then(
+        response => {
+          const { data } = response;
+          this.item = data;
+
+          // form
+          if (Object.prototype.hasOwnProperty.call(data, "usersId")) {
+            this.form.usersId = data.usersId;
           }
-        );
-    }    
+          if (Object.prototype.hasOwnProperty.call(data, "name")) {
+            this.form.name = data.name;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "status")) {
+            this.form.status = data.status;
+          }
+
+          this.wait = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!--<Header />--->
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -9,12 +9,11 @@
 // import Header from './components/layout/Header.vue'
 
 export default {
-  name: 'MainLayout',
+  name: "MainLayout",
   components: {
     // Header,
   }
-}
+};
 </script>
 
-<style>
-</style>
+<style></style>

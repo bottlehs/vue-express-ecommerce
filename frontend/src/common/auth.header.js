@@ -5,7 +5,7 @@ export default function authHeader() {
 
   if (accessToken) {
     return {
-      Authorization: "Bearer " + accessToken,
+      Authorization: "Bearer " + accessToken
     };
   } else {
     return {};

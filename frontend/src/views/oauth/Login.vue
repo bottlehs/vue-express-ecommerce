@@ -7,7 +7,7 @@
           ref="validationFormEmail"
           name="이메일"
           rules="required|email"
-          v-slot="{ errors }"          
+          v-slot="{ errors }"
         >
           <label>
             이메일
@@ -37,7 +37,7 @@
             {{ errors[0] }}
           </label>
         </ValidationProvider>
-        <button type="submit" :disabled="invalid || formSend">로그인</button>      
+        <button type="submit" :disabled="invalid || formSend">로그인</button>
       </form>
     </ValidationObserver>
   </div>
@@ -66,14 +66,15 @@ export default {
        * form : 폼 데이터
        * wait : 로딩
        * formWait : 폼전송
-       */      
+       */
+
       id: 0,
       wait: false,
       formWait: false,
       form: {
-        email: '',
-        password: ''
-      },
+        email: "",
+        password: ""
+      }
     };
   },
   created() {
@@ -107,30 +108,31 @@ export default {
       this.formWait = true;
       this.$store
         .dispatch("LOGIN", this.form)
-        .then((response) => {
+        .then(response => {
           this.formWait = false;
 
-          if ( response.status == 200 ) {
+          if (response.status == 200) {
             if (this.isAuthenticated) {
               this.$router.push({
                 name: "Dashboard"
               });
             }
           } else {
-            if (Object.prototype.hasOwnProperty.call(response.data,"message")) {
-              alert(response.data.message)
+            if (
+              Object.prototype.hasOwnProperty.call(response.data, "message")
+            ) {
+              alert(response.data.message);
             }
           }
         })
-        .catch(({ message }) => console.log(message));      
+        .catch(({ message }) => console.log(message));
     },
 
     onReset(evt) {
       evt.preventDefault();
-    }    
+    }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

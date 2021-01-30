@@ -25,11 +25,11 @@ const requireOauth = () => (from, to, next) => {
 const requireNoOauth = () => (from, to, next) => {
   if (Jwt.getAccessToken()) {
     /**
-     * 대시보드 화면으로 이동 
+     * 대시보드 화면으로 이동
      */
-    next("/");    
+    next("/");
   } else {
-    return next();    
+    return next();
   }
 };
 
@@ -44,7 +44,8 @@ const routes = [
     children: [
       /**
        * Dashboard
-       */      
+       */
+
       {
         path: "/login",
         name: "Login",
@@ -54,7 +55,7 @@ const routes = [
         },
         component: () => import("../views/oauth/Login.vue"),
         beforeEnter: requireNoOauth()
-      },
+      }
     ]
   },
   /**
@@ -67,7 +68,8 @@ const routes = [
     children: [
       /**
        * Dashboard
-       */      
+       */
+
       {
         path: "/",
         name: "Dashboard",
@@ -84,7 +86,8 @@ const routes = [
        * /users/edit : 단건 추가
        * /users/:id : 단건 조회
        * /users/edit/:id : 단건 수정
-       */            
+       */
+
       {
         path: "/users",
         name: "Users",
@@ -104,7 +107,7 @@ const routes = [
         },
         component: () => import("../views/users/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/users/:id",
         name: "UsersId",
@@ -131,7 +134,8 @@ const routes = [
        * /purchases/edit : 단건 추가
        * /purchases/:id : 단건 조회
        * /purchases/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/purchases",
         name: "Purchases",
@@ -151,7 +155,7 @@ const routes = [
         },
         component: () => import("../views/purchases/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/purchases/:id",
         name: "PurchasesId",
@@ -178,7 +182,8 @@ const routes = [
        * /products/edit : 단건 추가
        * /products/:id : 단건 조회
        * /products/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/products",
         name: "Products",
@@ -198,7 +203,7 @@ const routes = [
         },
         component: () => import("../views/products/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/products/:id",
         name: "ProductsId",
@@ -225,7 +230,8 @@ const routes = [
        * /posts/edit : 단건 추가
        * /posts/:id : 단건 조회
        * /posts/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/posts",
         name: "Posts",
@@ -245,7 +251,7 @@ const routes = [
         },
         component: () => import("../views/posts/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/posts/:id",
         name: "PostsId",
@@ -272,7 +278,8 @@ const routes = [
        * /inquires/edit : 단건 추가
        * /inquires/:id : 단건 조회
        * /inquires/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/inquires",
         name: "Inquires",
@@ -292,7 +299,7 @@ const routes = [
         },
         component: () => import("../views/inquires/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/inquires/:id",
         name: "InquiresId",
@@ -312,14 +319,15 @@ const routes = [
         },
         component: () => import("../views/inquires/Edit.vue"),
         beforeEnter: requireOauth()
-      },      
+      },
       /**
        * Faqs
        * /faqs : 다건 리스트 조회
        * /faqs/edit : 단건 추가
        * /faqs/:id : 단건 조회
        * /faqs/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/faqs",
         name: "Faqs",
@@ -339,7 +347,7 @@ const routes = [
         },
         component: () => import("../views/faqs/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/faqs/:id",
         name: "FaqsId",
@@ -359,14 +367,15 @@ const routes = [
         },
         component: () => import("../views/faqs/Edit.vue"),
         beforeEnter: requireOauth()
-      },      
+      },
       /**
        * Deliveries
        * /deliveries : 다건 리스트 조회
        * /deliveries/edit : 단건 추가
        * /deliveries/:id : 단건 조회
        * /deliveries/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/deliveries",
         name: "Deliveries",
@@ -386,7 +395,7 @@ const routes = [
         },
         component: () => import("../views/deliveries/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/deliveries/:id",
         name: "DeliveriesId",
@@ -412,7 +421,8 @@ const routes = [
        * /comments/edit : 단건 추가
        * /comments/:id : 단건 조회
        * /comments/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/comments",
         name: "Comments",
@@ -432,7 +442,7 @@ const routes = [
         },
         component: () => import("../views/comments/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/comments/:id",
         name: "CommentsId",
@@ -459,7 +469,8 @@ const routes = [
        * /carts/edit : 단건 추가
        * /carts/:id : 단건 조회
        * /carts/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/carts",
         name: "Carts",
@@ -479,7 +490,7 @@ const routes = [
         },
         component: () => import("../views/carts/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/carts/:id",
         name: "CartsId",
@@ -499,14 +510,15 @@ const routes = [
         },
         component: () => import("../views/carts/Edit.vue"),
         beforeEnter: requireOauth()
-      },      
+      },
       /**
        * Addresses
        * /addresses : 다건 리스트 조회
        * /addresses/edit : 단건 추가
        * /addresses/:id : 단건 조회
        * /addresses/edit/:id : 단건 수정
-       */         
+       */
+
       {
         path: "/addresses",
         name: "Addresses",
@@ -526,7 +538,7 @@ const routes = [
         },
         component: () => import("../views/addresses/Edit.vue"),
         beforeEnter: requireOauth()
-      },                       
+      },
       {
         path: "/addresses/:id",
         name: "AddressesId",
@@ -546,12 +558,12 @@ const routes = [
         },
         component: () => import("../views/addresses/Edit.vue"),
         beforeEnter: requireOauth()
-      },      
+      }
     ]
   },
   {
     path: "*",
-    component: () => import("../views/error/404.vue"),
+    component: () => import("../views/error/404.vue")
   }
 ];
 

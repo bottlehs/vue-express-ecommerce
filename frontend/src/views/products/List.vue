@@ -1,6 +1,5 @@
 <template>
-  <div class="list">
-  </div>
+  <div class="list"></div>
 </template>
 
 <script>
@@ -48,5 +47,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -6,7 +6,7 @@
           ref="validationFormEmail"
           name="이메일"
           rules="required|email"
-          v-slot="{ errors }"          
+          v-slot="{ errors }"
         >
           <label>
             이메일
@@ -70,7 +70,7 @@
             />
             {{ errors[0] }}
           </label>
-        </ValidationProvider>        
+        </ValidationProvider>
         <ValidationProvider
           ref="validationFormUsername"
           name="회원이름"
@@ -104,7 +104,7 @@
             />
             {{ errors[0] }}
           </label>
-        </ValidationProvider>        
+        </ValidationProvider>
         <ValidationProvider
           ref="validationFormCountry"
           name="언어"
@@ -121,7 +121,7 @@
             />
             {{ errors[0] }}
           </label>
-        </ValidationProvider>   
+        </ValidationProvider>
         <ValidationProvider
           ref="validationFormStatus"
           name="상태"
@@ -140,7 +140,7 @@
           </label>
         </ValidationProvider>
 
-        <button type="submit" :disabled="invalid || formWait"></button>      
+        <button type="submit" :disabled="invalid || formWait"></button>
       </form>
     </ValidationObserver>
   </div>
@@ -175,9 +175,10 @@ export default {
        * wait : 로딩
        * formWait : 폼 로딩
        * form : 폼
-       */      
+       */
+
       id: 0,
-      item: {},      
+      item: {},
       wait: false,
       formWait: false,
       form: {
@@ -198,8 +199,8 @@ export default {
         username: "",
         languege: "",
         country: "",
-        status: "",
-      },      
+        status: ""
+      }
     };
   },
   created() {
@@ -207,10 +208,13 @@ export default {
      * created
      */
     if (
-      Object.prototype.hasOwnProperty.call(this.$router.currentRoute.params,"id")
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.params,
+        "id"
+      )
     ) {
       this.id = this.$router.currentRoute.params.id;
-      this.findOne();      
+      this.findOne();
     }
   },
   mounted() {
@@ -234,48 +238,47 @@ export default {
      * methods
      */
     findOne() {
-        this.wait = false;
-        UsersService.findOne(this.id).then(
-          response => {
-            const { data } = response;
-            this.item = data;
+      this.wait = false;
+      UsersService.findOne(this.id).then(
+        response => {
+          const { data } = response;
+          this.item = data;
 
-            // form
-            if (Object.prototype.hasOwnProperty.call(data,"email")) {
-              this.form.email = data.email;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"password")) {
-              this.form.password = data.password;
-            };                                                
-            if (Object.prototype.hasOwnProperty.call(data,"firstname")) {
-              this.form.firstname = data.firstname;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"lastname")) {
-              this.form.lastname = data.lastname;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"username")) {
-              this.form.username = data.username;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"languege")) {
-              this.form.languege = data.languege;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"country")) {
-              this.form.country = data.country;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"status")) {
-              this.form.status = data.status;
-            };
-            
-            this.wait = true;
-          },
-          error => {
-            console.log(error);
+          // form
+          if (Object.prototype.hasOwnProperty.call(data, "email")) {
+            this.form.email = data.email;
           }
-        );
-    }    
+          if (Object.prototype.hasOwnProperty.call(data, "password")) {
+            this.form.password = data.password;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "firstname")) {
+            this.form.firstname = data.firstname;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "lastname")) {
+            this.form.lastname = data.lastname;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "username")) {
+            this.form.username = data.username;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "languege")) {
+            this.form.languege = data.languege;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "country")) {
+            this.form.country = data.country;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "status")) {
+            this.form.status = data.status;
+          }
+
+          this.wait = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

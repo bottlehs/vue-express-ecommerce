@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    AddressesEdit      
+    AddressesEdit
   </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
        * wait : 로딩
        * formWait : 폼전송
        * form : 폼
-       */      
+       */
+
       id: 0,
       wait: false,
       formWait: false,
@@ -63,9 +64,9 @@ export default {
         postcode: "",
         memo: "",
         status: "",
-        basic: "",        
+        basic: ""
       },
-      item: {},      
+      item: {}
     };
   },
   created() {
@@ -73,10 +74,13 @@ export default {
      * created
      */
     if (
-      Object.prototype.hasOwnProperty.call(this.$router.currentRoute.params,"id")
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.params,
+        "id"
+      )
     ) {
       this.id = this.$router.currentRoute.params.id;
-      this.findOne();      
+      this.findOne();
     }
   },
   mounted() {
@@ -100,60 +104,59 @@ export default {
      * methods
      */
     findOne() {
-        this.wait = false;
-        AddressesService.findOne(this.id).then(
-          response => {
-            const { data } = response;
-            this.item = data;
+      this.wait = false;
+      AddressesService.findOne(this.id).then(
+        response => {
+          const { data } = response;
+          this.item = data;
 
-            // form
-            if (Object.prototype.hasOwnProperty.call(data,"usersId")) {
-              this.form.usersId = data.usersId;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"title")) {
-              this.form.title = data.title;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"name")) {
-              this.form.name = data.name;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"email")) {
-              this.form.email = data.email;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"tel")) {
-              this.form.tel = data.tel;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"country")) {
-              this.form.country = data.country;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"address")) {
-              this.form.address = data.address;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"detailAddress")) {
-              this.form.detailAddress = data.detailAddress;
-            };
-            if (Object.prototype.hasOwnProperty.call(data,"postcode")) {
-              this.form.postcode = data.postcode;
-            };                                                                                    
-            if (Object.prototype.hasOwnProperty.call(data,"memo")) {
-              this.form.memo = data.memo;
-            };                                                                                    
-            if (Object.prototype.hasOwnProperty.call(data,"status")) {
-              this.form.status = data.status;
-            };                                                                                    
-            if (Object.prototype.hasOwnProperty.call(data,"basic")) {
-              this.form.basic = data.basic;
-            };
-
-            this.wait = true;
-          },
-          error => {
-            console.log(error);
+          // form
+          if (Object.prototype.hasOwnProperty.call(data, "usersId")) {
+            this.form.usersId = data.usersId;
           }
-        );
-    }    
+          if (Object.prototype.hasOwnProperty.call(data, "title")) {
+            this.form.title = data.title;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "name")) {
+            this.form.name = data.name;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "email")) {
+            this.form.email = data.email;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "tel")) {
+            this.form.tel = data.tel;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "country")) {
+            this.form.country = data.country;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "address")) {
+            this.form.address = data.address;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "detailAddress")) {
+            this.form.detailAddress = data.detailAddress;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "postcode")) {
+            this.form.postcode = data.postcode;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "memo")) {
+            this.form.memo = data.memo;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "status")) {
+            this.form.status = data.status;
+          }
+          if (Object.prototype.hasOwnProperty.call(data, "basic")) {
+            this.form.basic = data.basic;
+          }
+
+          this.wait = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

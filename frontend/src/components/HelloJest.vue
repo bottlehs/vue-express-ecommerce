@@ -8,20 +8,23 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      msg: 'Test coverage'
-    }
+      msg: "Test coverage"
+    };
   },
   computed: {
-    reversedMsg () {
-      return this.reverseString(this.msg)
+    reversedMsg() {
+      return this.reverseString(this.msg);
     }
   },
   methods: {
-    reverseString (str) {
-      return str.split('').reverse().join('')
+    reverseString(str) {
+      return str
+        .split("")
+        .reverse()
+        .join("");
     }
   }
-}
+};
 </script>
