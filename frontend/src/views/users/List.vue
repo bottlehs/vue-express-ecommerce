@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    users list
+    <b-table striped hover :items="items" :fields="fields"></b-table>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
     return {
       /**
        * search : 검색 데이터
+       * fields : 검색결과 페이지 리스트 필드
        * items : 응답 리스트 데이터
        * page : 검색결과 페이지 데이터
        * wait : 로딩
@@ -42,6 +43,7 @@ export default {
         page: 0,
         size: 10
       },
+      fields: ['email', 'password', 'firstname', 'lastname', 'username', 'languege', 'country', 'status'],
       items: [],
       page: {
         /**
