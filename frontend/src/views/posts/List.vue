@@ -47,6 +47,17 @@ export default {
     /**
      * created
      */
+    console.log(this.$router.currentRoute.query);
+    if (
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.query,
+        "page"
+      )
+    ) {
+      this.currentPage = this.$router.currentRoute.query.page;
+    }
+
+    this.findAll();
   },
   mounted() {
     /**
