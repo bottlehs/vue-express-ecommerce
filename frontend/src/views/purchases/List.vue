@@ -5,6 +5,11 @@
 <script>
 import { mapGetters } from "vuex";
 
+/**
+ * service
+ */
+import PurchasesService from "@/services/purchases.service.js";
+
 export default {
   name: "PurchasesList",
   components: {
@@ -79,6 +84,37 @@ export default {
     /**
      * methods
      */
+    findAll() {
+      this.wait = false;
+
+      const params = {
+        page: this.currentPage - 1,
+        size: this.pageSize
+      };
+
+      PurchasesService.findAll(params).then(
+        response => {
+          const { data } = response;
+          this.totalItems = data.totalItems;
+          this.totalPages = data.totalPages;
+          this.items = data.items;
+          this.wait = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    },
+    pageLink(button, page) {
+      this.currentPage = page;
+      this.findAll();
+    },
+    linkGen(pageNum) {
+      return {
+        path: '/users/',
+        query: { page: pageNum }
+      }
+    }
   }
 };
 </script>
