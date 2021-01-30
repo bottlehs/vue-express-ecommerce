@@ -1,6 +1,9 @@
 <template>
   <div class="list">
     <b-table striped hover :items="items" :fields="fields"></b-table>
+    <div class="overflow-auto">
+      <b-pagination-nav :link-gen="linkGen" :number-of-pages="totalPages" v-model="currentPage" align="center" @page-click="pageLink"></b-pagination-nav>
+    </div>
   </div>
 </template>
 
@@ -33,34 +36,71 @@ export default {
        * items : 응답 리스트 데이터
        * page : 검색결과 페이지 데이터
        * wait : 로딩
+       * totalItems : 전체 데이터수
+       * totalPages : 전체 페이지수
+       * currentPage : 현제 페이지
+       * pageSize: 페이지 요청 데이터수
        */
       wait: false,
       search: {
         /**
-         * page : 요청 페이지수
-         * size : 요청 페이지별 데이터 수
          */
-        page: 0,
-        size: 10
       },
-      fields: ['email', 'password', 'firstname', 'lastname', 'username', 'languege', 'country', 'status'],
+      fields: [
+        {
+          key: 'email',
+          label: 'email'
+        },
+        {
+          key: 'password',
+          label: 'password'
+        },
+        {
+          key: 'firstname',
+          label: 'firstname'
+        },
+        {
+          key: 'lastname',
+          label: 'lastname'
+        },
+        {
+          key: 'username',
+          label: 'username'
+        },
+        {
+          key: 'languege',
+          label: 'languege'
+        },
+        {
+          key: 'country',
+          label: 'country'
+        },
+        {
+          key: 'status',
+          label: 'status'
+        }
+      ],
       items: [],
-      page: {
-        /**
-         * totalItems : 전체 데이터수
-         * totalPages : 전체 페이지수
-         * currentPage : 현제 페이지
-         */
-        totalItems: 6,
-        totalPages: 1,
-        currentPage: 2
-      }
+      totalItems: 0,
+      totalPages: 1,
+      currentPage: 0,
+      pageSize: 10,
     };
   },
   created() {
     /**
      * created
      */
+    console.log(this.$router.currentRoute.query);
+    if (
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.query,
+        "page"
+      )
+    ) {
+      this.currentPage = this.$router.currentRoute.query.page;
+    }
+
     this.findAll();
   },
   mounted() {
@@ -87,16 +127,15 @@ export default {
       this.wait = false;
 
       const params = {
-        page: this.search.page,
-        size: this.search.size
+        page: this.currentPage - 1,
+        size: this.pageSize
       };
 
       UsersService.findAll(params).then(
         response => {
           const { data } = response;
-          this.page.totalItems = data.totalItems;
-          this.page.totalPages = data.totalPages;
-          this.page.currentPage = data.currentPage;
+          this.totalItems = data.totalItems;
+          this.totalPages = data.totalPages;
           this.items = data.items;
           this.wait = true;
         },
@@ -104,6 +143,16 @@ export default {
           console.log(error);
         }
       );
+    },
+    pageLink(button, page) {
+      this.currentPage = page;
+      this.findAll();
+    },
+    linkGen(pageNum) {
+      return {
+        path: '/users/',
+        query: { page: pageNum }
+      }
     }
   }
 };
