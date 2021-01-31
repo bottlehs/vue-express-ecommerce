@@ -15,6 +15,9 @@ import { mapGetters } from "vuex";
  */
 import ProductsService from "@/services/products.service.js";
 
+/**
+TODO : 상품옵션 선택창 필요.
+*/
 export default {
   name: "ProductsList",
   components: {
