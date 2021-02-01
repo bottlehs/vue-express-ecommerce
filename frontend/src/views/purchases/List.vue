@@ -1,9 +1,42 @@
 <template>
   <div class="list">
-    <b-table striped hover :items="items" :fields="fields"></b-table>
-    <div class="overflow-auto">
-      <b-pagination-nav :link-gen="linkGen" :number-of-pages="totalPages" v-model="currentPage" align="center" @page-click="pageLink"></b-pagination-nav>
-    </div>
+    <b-container fluid>
+      <!-- 검색 폼 -->
+      <b-row> </b-row>
+
+      <!-- 검색 결과 -->
+      <b-table striped hover :items="items" :fields="fields">
+        <template #cell(actions)="row">
+          <b-link :to="{ name: 'PurchasesId', params: { id: row.item.id } }">
+            <b-icon-search></b-icon-search>
+          </b-link>
+          <b-link
+            :to="{ name: 'PurchasesEditId', params: { id: row.item.id } }"
+          >
+            <b-icon-pencil></b-icon-pencil>
+          </b-link>
+        </template>
+      </b-table>
+
+      <!-- 페이징 -->
+      <b-row>
+        <b-col lg="6">
+          <div align="left">
+            Showing <b>{{ $n(currentPage) }}</b> to <b>{{ $n(pageSize) }}</b> of
+            <b>{{ $n(totalItems) }}</b> entries
+          </div>
+        </b-col>
+        <b-col lg="6">
+          <b-pagination-nav
+            :link-gen="linkGen"
+            :number-of-pages="totalPages"
+            v-model="currentPage"
+            align="right"
+            @page-click="pageLink"
+          ></b-pagination-nav>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -44,172 +77,178 @@ export default {
         {
           /**
            * users id (후보키) */
-          key: 'usersId',
-          label: 'usersId'
+          key: "usersId",
+          label: this.$t("purchases_users_id")
         },
         {
           /**
            * carts id (후보키) */
-          key: 'cartsId',
-          label: 'cartsId'
+          key: "cartsId",
+          label: this.$t("purchases_carts_id")
         },
         {
           /**
            * products id (후보키) */
-          key: 'productsId',
-          label: 'productsId'
+          key: "productsId",
+          label: this.$t("purchases_products_id")
         },
         {
           /**
            * productsOptions id (후보키) */
-          key: 'productsOptionsId',
-          label: 'productsOptionsId'
+          key: "productsOptionsId",
+          label: this.$t("purchases_products_options_id")
         },
         {
           /**
            * 서드파티 거래 고유 번호 */
-          key: 'thirdPartyUid',
-          label: 'thirdPartyUid'
+          key: "thirdPartyUid",
+          label: this.$t("purchases_third_party_uid")
         },
         {
           /**
            * 가맹점에서 생성/관리하는 고유 주문번호 */
-          key: 'merchantUid',
-          label: 'merchantUid'
+          key: "merchantUid",
+          label: this.$t("purchases_merchant_uid")
         },
         {
           /**
            * 결제수단 */
-          key: 'method',
-          label: 'method'
+          key: "method",
+          label: this.$t("purchases_method")
         },
         {
           /**
            * 결제금액	*/
-          key: 'amount',
-          label: 'amount'
+          key: "amount",
+          label: this.$t("purchases_amount")
         },
         {
           /**
            * 결제승인/시도된 PG사 */
-          key: 'pgProvider',
-          label: 'temp'
+          key: "pgProvider",
+          label: this.$t("purchases_pg_provider")
         },
         {
           /**
            * PG사 거래고유번호 */
-          key: 'pgId',
-          label: 'pgId'
+          key: "pgId",
+          label: this.$t("purchases_pg_id")
         },
         {
           /**
            * 주문자 이름 */
-          key: 'name',
-          label: 'name'
+          key: "name",
+          label: this.$t("purchases_name")
         },
         {
           /**
            * 주문자 Email */
-          key: 'email',
-          label: 'email'
+          key: "email",
+          label: this.$t("purchases_email")
         },
         {
           /**
            * 주문자 연락처 */
-          key: 'tel',
-          label: 'tel'
+          key: "tel",
+          label: this.$t("purchases_tel")
         },
         {
           /**
            * 주문자 국가 */
-          key: 'country',
-          label: 'country'
+          key: "country",
+          label: this.$t("purchases_country")
         },
         {
           /**
            * 주문자 주소 */
-          key: 'address',
-          label: 'address'
+          key: "address",
+          label: this.$t("purchases_address")
         },
         {
           /**
            * 주문자 상세 주소 */
-          key: 'detailAddress',
-          label: 'detailAddress'
+          key: "detailAddress",
+          label: this.$t("purchases_detail_address")
         },
         {
           /**
            * 주문자 우편번호 */
-          key: 'postcode',
-          label: 'postcode'
+          key: "postcode",
+          label: this.$t("purchases_postcode")
         },
         {
           /**
            * 가맹점 임의 지정 데이터 */
-          key: 'customData',
-          label: 'customData'
+          key: "customData",
+          label: this.$t("purchases_custom_data")
         },
         {
           /**
-           * 결제승인시각*/
-          key: 'purchasesAt',
-          label: 'purchasesAt'
+           * 결제승인시각 */
+          key: "purchasesAt",
+          label: this.$t("purchases_purchases_at")
         },
         {
           /**
-           * PG사에서 발행되는 거래 매출전표 URL*/
-          key: 'receiptUrl',
-          label: 'receiptUrl'
+           * PG사에서 발행되는 거래 매출전표 URL */
+          key: "receiptUrl",
+          label: this.$t("purchases_receipt_url")
         },
         {
           /**
-           * 카드사 승인번호*/
-          key: 'applyNumber',
-          label: 'applyNumber'
+           * 카드사 승인번호 */
+          key: "applyNumber",
+          label: this.$t("purchases_apply_number")
         },
         {
           /**
-           * 가상계좌 입금계좌번호*/
-          key: 'vbankNumber',
-          label: 'vbankNumber'
+           * 가상계좌 입금계좌번호 */
+          key: "vbankNumber",
+          label: this.$t("purchases_vbank_number")
         },
         {
           /**
            * 가상계좌 은행명 */
-          key: 'vbankName',
-          label: 'vbankName'
+          key: "vbankName",
+          label: this.$t("purchases_vbank_name")
         },
         {
           /**
-           * 가상계좌 예금주*/
-          key: 'vbankHolder',
-          label: 'vbankHolder'
+           * 가상계좌 예금주 */
+          key: "vbankHolder",
+          label: this.$t("purchases_vbank_holder")
         },
         {
           /**
-           * 가상계좌 입금기한*/
-          key: 'vbankDate',
-          label: 'vbankDate'
+           * 가상계좌 입금기한 */
+          key: "vbankDate",
+          label: this.$t("purchases_vbank_date")
         },
         {
           /**
            * 주문자 메모 */
-          key: 'memo',
-          label: 'memo'
+          key: "memo",
+          label: this.$t("purchases_memo")
         },
         {
           /**
-           * 상태
-           * */
-          key: 'status',
-          label: 'status'
+           * 상태 */
+          key: "status",
+          label: this.$t("purchases_status")
+        },
+        {
+          /**
+           * Action
+           */
+          key: "actions",
+          label: "Actions"
         }
       ],
       items: [],
       totalItems: 0,
       totalPages: 0,
-      currentPage: 0,
-      pageSize: 10,
+      currentPage: 1,
+      pageSize: 10
     };
   },
   created() {
@@ -252,7 +291,7 @@ export default {
       this.wait = false;
 
       const params = {
-        page: this.currentPage - 1,
+        page: this.currentPage,
         size: this.pageSize
       };
 
@@ -275,9 +314,9 @@ export default {
     },
     linkGen(pageNum) {
       return {
-        path: '/users/',
+        path: "/users/",
         query: { page: pageNum }
-      }
+      };
     }
   }
 };

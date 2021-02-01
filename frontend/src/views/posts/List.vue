@@ -1,9 +1,40 @@
 <template>
   <div class="list">
-    <b-table striped hover :items="items" :fields="fields"></b-table>
-    <div class="overflow-auto">
-      <b-pagination-nav :link-gen="linkGen" :number-of-pages="totalPages" v-model="currentPage" align="center" @page-click="pageLink"></b-pagination-nav>
-    </div>
+    <b-container fluid>
+      <!-- 검색 폼 -->
+      <b-row> </b-row>
+
+      <!-- 검색 결과 -->
+      <b-table striped hover :items="items" :fields="fields">
+        <template #cell(actions)="row">
+          <b-link :to="{ name: 'PostsId', params: { id: row.item.id } }">
+            <b-icon-search></b-icon-search>
+          </b-link>
+          <b-link :to="{ name: 'PostsEditId', params: { id: row.item.id } }">
+            <b-icon-pencil></b-icon-pencil>
+          </b-link>
+        </template>
+      </b-table>
+
+      <!-- 페이징 -->
+      <b-row>
+        <b-col lg="6">
+          <div align="left">
+            Showing <b>{{ $n(currentPage) }}</b> to <b>{{ $n(pageSize) }}</b> of
+            <b>{{ $n(totalItems) }}</b> entries
+          </div>
+        </b-col>
+        <b-col lg="6">
+          <b-pagination-nav
+            :link-gen="linkGen"
+            :number-of-pages="totalPages"
+            v-model="currentPage"
+            align="right"
+            @page-click="pageLink"
+          ></b-pagination-nav>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -42,15 +73,60 @@ export default {
       },
       fields: [
         {
-          key: 'temp',
-          label: 'temp'
+          /**
+           * users id (후보키) */
+          key: "usersId",
+          label: this.$t("posts_users_id")
+        },
+        {
+          /**
+           * 제목 */
+          key: "title",
+          label: this.$t("posts_title")
+        },
+        {
+          /**
+           * 내용 */
+          key: "content",
+          label: this.$t("posts_content")
+        },
+        {
+          /**
+           * 상태 */
+          key: "status",
+          label: this.$t("posts_status")
+        },
+        {
+          /**
+           * 댓글 상태 */
+          key: "commentsStatus",
+          label: this.$t("posts_comments_status")
+        },
+        {
+          /**
+           * 유형 */
+          key: "type",
+          label: this.$t("posts_type")
+        },
+        {
+          /**
+           * 댓글수 */
+          key: "commentsCount",
+          label: this.$t("posts_comments_count")
+        },
+        {
+          /**
+           * Action
+           */
+          key: "actions",
+          label: "Actions"
         }
       ],
       items: [],
       totalItems: 0,
       totalPages: 0,
-      currentPage: 0,
-      pageSize: 10,
+      currentPage: 1,
+      pageSize: 10
     };
   },
   created() {
@@ -93,7 +169,7 @@ export default {
       this.wait = false;
 
       const params = {
-        page: this.currentPage - 1,
+        page: this.currentPage,
         size: this.pageSize
       };
 
@@ -116,9 +192,9 @@ export default {
     },
     linkGen(pageNum) {
       return {
-        path: '/users/',
+        path: "/users/",
         query: { page: pageNum }
-      }
+      };
     }
   }
 };
