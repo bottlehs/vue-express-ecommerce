@@ -1,11 +1,15 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">{{ $t('title') }}</b-navbar-brand>
+      <b-navbar-brand href="#">{{ $t("title") }}</b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item v-for="menu in menus" :key="menu.name" :to="{ name: menu.name }">
+          <b-nav-item
+            v-for="menu in menus"
+            :key="menu.name"
+            :to="{ name: menu.name }"
+          >
             {{ $t(menu.title) }}
           </b-nav-item>
         </b-navbar-nav>
