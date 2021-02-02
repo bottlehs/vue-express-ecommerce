@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../../server.jest');
-require("../routes/oauth.routes")(app);
+require("../routes/deliveries.routes")(app);
 
 jest.mock("./save_json", () => ({
   save: jest.fn(),
@@ -19,13 +19,9 @@ jest.mock("./usStates.json", () => [
   },
 ]);
 
-describe("testing-server-oauth-routes", () => {
-  it("POST /api/oauth/login - success", async (done) => {
-    const params = {
-      email: "5252f0ef-8924-4e26-85c8-630d4174c4c8@email.com",
-      password: "password123"
-    };
-    const response = await request(app).post("/api/oauth/login").send(params);
+describe("testing-server-deliveries-routes", () => {
+  it("GET /api/deliveries - success", async (done) => {
+    const response = await request(app).get("/api/deliveries");
     expect(response.statusCode).toEqual(200);
     done();
   });
