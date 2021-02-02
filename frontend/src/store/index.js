@@ -3,11 +3,13 @@ import Vuex from "vuex";
 import OauthService from "@/services/oauth.service.js";
 
 import Jwt from "@/common/jwt";
+import Lang from "@/common/lang";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     token: {},
+    lang: !!Lang.getLang(),
     isAuthenticated: !!Jwt.getAccessToken()
   },
   mutations: {
@@ -22,13 +24,18 @@ export default new Vuex.Store({
       state.isAuthenticated = false;
       Jwt.destroyAccessToken();
       Jwt.destroyRefreshToken();
+    },
+    LANG: function(state, data) {
+      state.lang = data.lang;
+      Lang.saveLang(data.lang);
     }
   },
   getters: {
     isAuthenticated(state) {
-      console.log("isAuthenticated");
-      console.log(state);
       return state.isAuthenticated;
+    },
+    lang(state) {
+      return state.lang;
     }
   },
   actions: {
@@ -69,6 +76,12 @@ export default new Vuex.Store({
           console.log(error);
         }
       );
+    },
+    // 언어
+    LANG({ commit }, { lang }) {
+      commit("LANG", {
+        lang: lang
+      });
     }
   },
   modules: {}

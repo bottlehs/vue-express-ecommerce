@@ -1,5 +1,6 @@
 {
   "title" : "쇼핑",
+  "showing_currentPage_to_pagesize_of_totalitems_entries": "<b>{totalItems}</b>개 항목 중 <b>{currentPage}</b>~<b>{pageSize}</b>개 표시",
 
   "dashboard" : "대시보드",
 

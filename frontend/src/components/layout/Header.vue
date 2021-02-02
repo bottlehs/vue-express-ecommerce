@@ -124,7 +124,7 @@ export default {
     /**
      * computed
      */
-    ...mapGetters(["isAuthenticated"])
+    ...mapGetters(["isAuthenticated","lang"])
   },
   destroyed() {
     /**

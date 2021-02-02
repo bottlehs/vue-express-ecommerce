@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import Lang from "@/common/lang";
 
 // bootstrap-vue
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
@@ -11,13 +12,32 @@ Vue.use(IconsPlugin);
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
+// lang
+let lang = Lang.getLang();
+if ( !lang ) {
+  if (window.navigator.languages) {
+    lang = window.navigator.languages[0];
+  } else {
+    lang = window.navigator.userLanguage || window.navigator.language;
+  };
+};
+
+if (lang == "en-US") {
+  lang = "en";
+}
+if (lang == "ko-KR") {
+  lang = "ko";
+}
+
 // moment
 import moment from "moment";
-moment.locale("ko");
+moment.locale(lang);
 Vue.prototype.moment = moment;
 
 // i18n
 import i18n from "./i18n";
+i18n.locale = lang;
+Lang.saveLang(lang);
 
 // vee-validate
 import {
