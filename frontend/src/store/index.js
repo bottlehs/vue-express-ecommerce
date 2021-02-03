@@ -4,6 +4,8 @@ import OauthService from "@/services/oauth.service.js";
 
 import Jwt from "@/common/jwt";
 import Lang from "@/common/lang";
+import Crypto from "@/common/crypto";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -41,8 +43,8 @@ export default new Vuex.Store({
   actions: {
     LOGIN({ commit }, { email, password }) {
       return OauthService.login({
-        email,
-        password
+        email: Crypto.cryptoAesEncrypt(email),
+        password: Crypto.cryptoAesEncrypt(password)
       }).then(
         response => {
           const { data } = response;

@@ -19,8 +19,16 @@
       <!-- 페이징 -->
       <b-row>
         <b-col lg="6">
-          <div align="left" v-html="$t('showing_currentPage_to_pagesize_of_totalitems_entries', { currentPage: $n(currentPage), pageSize: $n(pageSize), totalItems: $n(totalItems) })">
-          </div>
+          <div
+            align="left"
+            v-html="
+              $t('showing_currentPage_to_pagesize_of_totalitems_entries', {
+                currentPage: $n(currentPage),
+                pageSize: $n(pageSize),
+                totalItems: $n(totalItems)
+              })
+            "
+          ></div>
         </b-col>
         <b-col lg="6">
           <b-pagination-nav
@@ -114,11 +122,22 @@ export default {
     /**
      * created
      */
-    if ( Object.prototype.hasOwnProperty.call(this.$router.currentRoute.query,"page") ) {
+    if (
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.query,
+        "page"
+      )
+    ) {
       this.currentPage = this.$router.currentRoute.query.page;
     }
 
-    if ( Object.prototype.hasOwnProperty.call(this.$router.currentRoute.query,"type") && Object.prototype.hasOwnProperty.call(this.$router.currentRoute.query,"q") ) {
+    if (
+      Object.prototype.hasOwnProperty.call(
+        this.$router.currentRoute.query,
+        "type"
+      ) &&
+      Object.prototype.hasOwnProperty.call(this.$router.currentRoute.query, "q")
+    ) {
       this.search.type = this.$router.currentRoute.query.type;
       this.search.q = this.$router.currentRoute.query.q;
     }
@@ -153,9 +172,9 @@ export default {
         size: this.pageSize
       };
 
-      if ( this.search.q && this.search.type ) {
+      if (this.search.q && this.search.type) {
         params[this.search.type] = this.search.q;
-      };
+      }
 
       ProductsService.findAll(params).then(
         response => {
@@ -176,10 +195,10 @@ export default {
     },
     linkGen(pageNum) {
       const query = {};
-      if ( this.search.q && this.search.type ) {
+      if (this.search.q && this.search.type) {
         query.type = this.search.type;
         query.q = this.search.q;
-      };
+      }
 
       query.page = pageNum;
 

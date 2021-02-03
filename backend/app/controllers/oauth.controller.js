@@ -3,6 +3,7 @@ const User = db.users;
 const Op = db.Sequelize.Op;
 const jwt = require("jsonwebtoken");
 const randtoken = require("rand-token");
+const Crypto = require("../utils/crypto");
 
 // Create and Save a new User
 exports.create = (req, res) => {
@@ -23,8 +24,8 @@ exports.create = (req, res) => {
 
   // Create a User
   const oauth = {
-    email: req.body.email,
-    password: req.body.password,
+    email: Crypto.cryptoAesDecrypt(req.body.email),
+    password: Crypto.cryptoAesDecrypt(req.body.password),
   };
 
   User.findOne({ where: { email: oauth.email } })
