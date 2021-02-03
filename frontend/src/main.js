@@ -14,13 +14,13 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 // lang
 let lang = Lang.getLang();
-if ( !lang ) {
+if (!lang) {
   if (window.navigator.languages) {
     lang = window.navigator.languages[0];
   } else {
     lang = window.navigator.userLanguage || window.navigator.language;
-  };
-};
+  }
+}
 
 if (lang == "en-US") {
   lang = "en";
