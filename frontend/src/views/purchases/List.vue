@@ -5,7 +5,20 @@
       <b-row> </b-row>
 
       <!-- 검색 결과 -->
-      <b-table striped hover :items="items" :fields="fields">
+      <b-table
+        striped
+        hover
+        responsive
+        :busy="wait"
+        :items="items"
+        :fields="fields"
+      >
+        <template #table-busy>
+          <div class="text-center text-danger my-2">
+            <b-spinner class="align-middle"></b-spinner>
+            <strong>Loading...</strong>
+          </div>
+        </template>
         <template #cell(actions)="row">
           <b-link :to="{ name: 'PurchasesId', params: { id: row.item.id } }">
             <b-icon-search></b-icon-search>
@@ -308,7 +321,7 @@ export default {
      * methods
      */
     findAll() {
-      this.wait = false;
+      this.wait = true;
 
       const params = {
         page: this.currentPage,
@@ -325,10 +338,15 @@ export default {
           this.totalItems = data.totalItems;
           this.totalPages = data.totalPages;
           this.items = data.items;
-          this.wait = true;
+          this.wait = false;
         },
         error => {
-          console.log(error);
+          if (
+            Object.prototype.hasOwnProperty.call(error.response.data, "message")
+          ) {
+            alert(response.data.message);
+          }
+          this.wait = false;
         }
       );
     },
