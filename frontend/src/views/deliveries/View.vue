@@ -1,6 +1,9 @@
 <template>
   <div class="view">
-    DeliveriesView
+    <div v-if="wait" class="d-flex justify-content-center mb-3">
+      <b-spinner label="Loading..."></b-spinner>
+    </div>
+    <div v-else></div>
   </div>
 </template>
 
@@ -73,15 +76,20 @@ export default {
      * methods
      */
     findOne() {
-      this.wait = false;
+      this.wait = true;
       DeliveriesService.findOne(this.id).then(
         response => {
           const { data } = response;
           this.item = data;
-          this.wait = true;
+          this.wait = false;
         },
         error => {
-          console.log(error);
+          if (
+            Object.prototype.hasOwnProperty.call(error.response.data, "message")
+          ) {
+            alert(response.data.message);
+          }
+          this.wait = false;
         }
       );
     }

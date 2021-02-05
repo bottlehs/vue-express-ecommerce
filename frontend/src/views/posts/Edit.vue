@@ -1,6 +1,9 @@
 <template>
   <div class="edit">
-    PostsEdit
+    <div v-if="wait && id" class="d-flex justify-content-center mb-3">
+      <b-spinner label="Loading..."></b-spinner>
+    </div>
+    <div v-else></div>
   </div>
 </template>
 
@@ -94,7 +97,7 @@ export default {
      * methods
      */
     findOne() {
-      this.wait = false;
+      this.wait = true;
       PostsService.findOne(this.id).then(
         response => {
           const { data } = response;
@@ -123,10 +126,15 @@ export default {
             this.form.commentsCount = data.commentsCount;
           }
 
-          this.wait = true;
+          this.wait = false;
         },
         error => {
-          console.log(error);
+          if (
+            Object.prototype.hasOwnProperty.call(error.response.data, "message")
+          ) {
+            alert(response.data.message);
+          }
+          this.wait = false;
         }
       );
     }

@@ -1,148 +1,153 @@
 <template>
   <div class="edit">
-    <ValidationObserver v-slot="{ invalid }">
-      <form @submit.prevent="onSubmit" @reset="onReset">
-        <ValidationProvider
-          ref="validationFormEmail"
-          name="이메일"
-          rules="required|email"
-          v-slot="{ errors }"
-        >
-          <label>
-            이메일
-            <input
-              ref="formEmail"
-              type="text"
-              v-model="form.email"
-              placeholder="이메일 입력"
-            />
-            {{ errors[0] }}
-          </label>
-        </ValidationProvider>
-        <ValidationProvider
-          ref="validationFormPassword"
-          name="비밀번호"
-          rules="required"
-          v-slot="{ errors }"
-        >
-          <label>
-            비밀번호
-            <input
-              ref="formPassword"
-              type="password"
-              v-model="form.password"
-              placeholder="비밀번호 입력"
-            />
-            {{ errors[0] }}
-          </label>
-        </ValidationProvider>
+    <div v-if="wait && id" class="d-flex justify-content-center mb-3">
+      <b-spinner label="Loading..."></b-spinner>
+    </div>
+    <div v-else>
+      <ValidationObserver v-slot="{ invalid }">
+        <form @submit.prevent="onSubmit" @reset="onReset">
+          <ValidationProvider
+            ref="validationFormEmail"
+            name="이메일"
+            rules="required|email"
+            v-slot="{ errors }"
+          >
+            <label>
+              이메일
+              <input
+                ref="formEmail"
+                type="text"
+                v-model="form.email"
+                placeholder="이메일 입력"
+              />
+              {{ errors[0] }}
+            </label>
+          </ValidationProvider>
+          <ValidationProvider
+            ref="validationFormPassword"
+            name="비밀번호"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <label>
+              비밀번호
+              <input
+                ref="formPassword"
+                type="password"
+                v-model="form.password"
+                placeholder="비밀번호 입력"
+              />
+              {{ errors[0] }}
+            </label>
+          </ValidationProvider>
 
-        <ValidationProvider
-          ref="validationFormFirstname"
-          name="이름"
-          rules="required"
-          v-slot="{ errors }"
-        >
-          <label>
-            이름
-            <input
-              ref="formFirstname"
-              type="text"
-              v-model="form.firstname"
-              placeholder="이름 입력"
-            />
-            {{ errors[0] }}
-          </label>
-        </ValidationProvider>
-        <ValidationProvider
-          ref="validationFormLastname"
-          name="성"
-          rules="required"
-          v-slot="{ errors }"
-        >
-          <label>
-            성
-            <input
-              ref="formLastname"
-              type="text"
-              v-model="form.lastname"
-              placeholder="성 입력"
-            />
-            {{ errors[0] }}
-          </label>
-        </ValidationProvider>
-        <ValidationProvider
-          ref="validationFormUsername"
-          name="회원이름"
-          rules="required"
-          v-slot="{ errors }"
-        >
-          <label>
-            회원이름
-            <input
-              ref="formUsername"
-              type="text"
-              v-model="form.username"
-              placeholder="회원이름 입력"
-            />
-            {{ errors[0] }}
-          </label>
-        </ValidationProvider>
-        <ValidationProvider
-          ref="validationFormLanguege"
-          name="언어"
-          rules="required"
-          v-slot="{ errors }"
-        >
-          <label>
-            언어
-            <input
-              ref="formLanguege"
-              type="text"
-              v-model="form.languege"
-              placeholder="언어 입력"
-            />
-            {{ errors[0] }}
-          </label>
-        </ValidationProvider>
-        <ValidationProvider
-          ref="validationFormCountry"
-          name="언어"
-          rules="required"
-          v-slot="{ errors }"
-        >
-          <label>
-            언어
-            <input
-              ref="formCountry"
-              type="text"
-              v-model="form.country"
-              placeholder="언어 입력"
-            />
-            {{ errors[0] }}
-          </label>
-        </ValidationProvider>
-        <ValidationProvider
-          ref="validationFormStatus"
-          name="상태"
-          rules="required"
-          v-slot="{ errors }"
-        >
-          <label>
-            상태
-            <input
-              ref="formStatus"
-              type="text"
-              v-model="form.status"
-              placeholder="상태 입력"
-            />
-            {{ errors[0] }}
-          </label>
-        </ValidationProvider>
+          <ValidationProvider
+            ref="validationFormFirstname"
+            name="이름"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <label>
+              이름
+              <input
+                ref="formFirstname"
+                type="text"
+                v-model="form.firstname"
+                placeholder="이름 입력"
+              />
+              {{ errors[0] }}
+            </label>
+          </ValidationProvider>
+          <ValidationProvider
+            ref="validationFormLastname"
+            name="성"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <label>
+              성
+              <input
+                ref="formLastname"
+                type="text"
+                v-model="form.lastname"
+                placeholder="성 입력"
+              />
+              {{ errors[0] }}
+            </label>
+          </ValidationProvider>
+          <ValidationProvider
+            ref="validationFormUsername"
+            name="회원이름"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <label>
+              회원이름
+              <input
+                ref="formUsername"
+                type="text"
+                v-model="form.username"
+                placeholder="회원이름 입력"
+              />
+              {{ errors[0] }}
+            </label>
+          </ValidationProvider>
+          <ValidationProvider
+            ref="validationFormLanguege"
+            name="언어"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <label>
+              언어
+              <input
+                ref="formLanguege"
+                type="text"
+                v-model="form.languege"
+                placeholder="언어 입력"
+              />
+              {{ errors[0] }}
+            </label>
+          </ValidationProvider>
+          <ValidationProvider
+            ref="validationFormCountry"
+            name="언어"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <label>
+              언어
+              <input
+                ref="formCountry"
+                type="text"
+                v-model="form.country"
+                placeholder="언어 입력"
+              />
+              {{ errors[0] }}
+            </label>
+          </ValidationProvider>
+          <ValidationProvider
+            ref="validationFormStatus"
+            name="상태"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <label>
+              상태
+              <input
+                ref="formStatus"
+                type="text"
+                v-model="form.status"
+                placeholder="상태 입력"
+              />
+              {{ errors[0] }}
+            </label>
+          </ValidationProvider>
 
-        <button type="submit" :disabled="invalid || formWait"></button>
-      </form>
-    </ValidationObserver>
+          <button type="submit" :disabled="invalid || formWait"></button>
+        </form>
+      </ValidationObserver>
+    </div>
   </div>
 </template>
 
@@ -238,7 +243,7 @@ export default {
      * methods
      */
     findOne() {
-      this.wait = false;
+      this.wait = true;
       UsersService.findOne(this.id).then(
         response => {
           const { data } = response;
@@ -270,10 +275,15 @@ export default {
             this.form.status = data.status;
           }
 
-          this.wait = true;
+          this.wait = false;
         },
         error => {
-          console.log(error);
+          if (
+            Object.prototype.hasOwnProperty.call(error.response.data, "message")
+          ) {
+            alert(response.data.message);
+          }
+          this.wait = false;
         }
       );
     }
