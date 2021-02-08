@@ -63,7 +63,10 @@ require("./app/routes/posts.routes")(app);
 require("./app/routes/comments.routes")(app);
 require("./app/routes/products.routes")(app);
 require("./app/routes/products.options.routes")(app);
+require("./app/routes/purchases.routes")(app);
 require("./app/routes/carts.routes")(app);
+require("./app/routes/addresses.routes")(app);
+require("./app/routes/deliveries.routes")(app);
 
 // swagger
 const swaggerUi = require("swagger-ui-express");
