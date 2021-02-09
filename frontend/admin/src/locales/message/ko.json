@@ -1,6 +1,17 @@
 {
   "title" : "쇼핑",
   "showing_currentPage_to_pagesize_of_totalitems_entries": "<b>{totalItems}</b>개 항목 중 <b>{currentPage}</b>~<b>{pageSize}</b>개 표시",
+  "button_search" : "검색",
+  "input_search" : "검색어",
+  "modify" : "수정",
+  "add" : "추가",
+  "cancel" : "취소",
+  "remove" : "삭제",
+  "add_text" : "추가 하시겠습니까?",
+  "remove_text" : "삭제 하시겠습니까?",
+  "cancel_text" : "취소 하시겠습니까?",
+  "successful" : "성공",
+  "failure" : "실패",
 
   "dashboard" : "대시보드",
 
@@ -13,6 +24,8 @@
   "users_languege" : "언어",
   "users_country" : "국가",
   "users_status" : "상태",
+  "users_created_at" : "생성날자",
+  "users_updated_at" : "수정날짜",
 
   "purchases" : "구매",
   "purchases_users_id" : "users id (후보키)",
@@ -42,11 +55,15 @@
   "purchases_vbank_date" : "가상계좌 입금기한",
   "purchases_memo" : "주문자 메모",
   "purchases_status" : "상태",
+  "purchases_created_at" : "생성날자",
+  "purchases_updated_at" : "수정날짜",
 
   "products" : "상품",
   "products_users_id" : "users id (후보키)",
   "products_name" : "상품명",
   "products_status" : "상태",
+  "products_created_at" : "생성날자",
+  "products_updated_at" : "수정날짜",
 
   "posts" : "게시물",
   "posts_users_id" : "users id (후보키)",
@@ -56,17 +73,23 @@
   "posts_comments_status" : "댓글 상태",
   "posts_type" : "유형",
   "posts_comments_count" : "댓글수",
+  "posts_created_at" : "생성날자",
+  "posts_updated_at" : "수정날짜",
 
   "inquires" : "문의",
   "inquires_users_id" : "users id (후보키)",
   "inquires_question" : "질문",
   "inquires_answer" : "답변",
   "inquires_status" : "상태",
+  "inquires_created_at" : "생성날자",
+  "inquires_updated_at" : "수정날짜",
 
   "faqs" : "자주묻는질문",
   "faqs_question" : "질문",
   "faqs_answer" : "답변",
   "faqs_status" : "상태",
+  "faqs_created_at" : "생성날자",
+  "faqs_updated_at" : "수정날짜",
 
   "deliveries" : "배송",
   "deliveries_users_id" : "users id (후보키)",
@@ -82,6 +105,8 @@
   "deliveries_tracking_number" : "배송",
   "deliveries_memo" : "배송",
   "deliveries_status" : "배송",
+  "deliveries_created_at" : "생성날자",
+  "deliveries_updated_at" : "수정날짜",
 
   "comments" : "댓글",
   "comments_posts_id" : "posts id (후보키)",
@@ -89,12 +114,16 @@
   "comments_parent" : "comments id (대댓글 부모키)",
   "comments_content" : "내용",
   "comments_type" : "유형",
+  "comments_created_at" : "생성날자",
+  "comments_updated_at" : "수정날짜",
 
   "carts" : "장바구니",
   "carts_users_id" : "users id (후보키)",
   "carts_products_id" : "products id (후보키)",
   "carts_products_options_id" : "productsOptions id (후보키)",
   "carts_status" : "상태",
+  "carts_created_at" : "생성날자",
+  "carts_updated_at" : "수정날짜",
 
   "addresses" : "주소",
   "addresses_users_id" : "users id (후보키)",
@@ -108,5 +137,7 @@
   "addresses_postcode" : "주문자 우편번호",
   "addresses_memo" : "메모",
   "addresses_status" : "상태",
-  "addresses_basic" : "기본여부"
+  "addresses_basic" : "기본여부",
+  "addresses_created_at" : "생성날자",
+  "addresses_updated_at" : "수정날짜"
 }
