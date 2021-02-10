@@ -5,37 +5,37 @@
     </div>
     <div v-else>
       <ValidationObserver v-slot="{ invalid }">
-        <form @submit.prevent="onSubmit" @reset="onReset">
+        <b-form @submit.prevent="onSubmit" @reset="onReset">
           <ValidationProvider
             ref="validationFormEmail"
-            name="이메일"
+            :name="$t('user_email')"
             rules="required|email"
             v-slot="{ errors }"
           >
             <label>
-              이메일
+              {{ $t("user_email") }}
               <input
                 ref="formEmail"
                 type="text"
                 v-model="form.email"
-                placeholder="이메일 입력"
+                :placeholder="$t('user_email')"
               />
               {{ errors[0] }}
             </label>
           </ValidationProvider>
           <ValidationProvider
             ref="validationFormPassword"
-            name="비밀번호"
+            :name="$t('users_password')"
             rules="required"
             v-slot="{ errors }"
           >
             <label>
-              비밀번호
+              {{ $t("users_password") }}
               <input
                 ref="formPassword"
                 type="password"
                 v-model="form.password"
-                placeholder="비밀번호 입력"
+                :placeholder="$t('users_password')"
               />
               {{ errors[0] }}
             </label>
@@ -43,109 +43,128 @@
 
           <ValidationProvider
             ref="validationFormFirstname"
-            name="이름"
+            :name="$t('users_firstname')"
             rules="required"
             v-slot="{ errors }"
           >
             <label>
-              이름
+              {{ $t("users_firstname") }}
               <input
                 ref="formFirstname"
                 type="text"
                 v-model="form.firstname"
-                placeholder="이름 입력"
+                :placeholder="$t('users_firstname')"
               />
               {{ errors[0] }}
             </label>
           </ValidationProvider>
           <ValidationProvider
             ref="validationFormLastname"
-            name="성"
+            :name="$t('users_lastname')"
             rules="required"
             v-slot="{ errors }"
           >
             <label>
-              성
+              {{ $t("users_lastname") }}
               <input
                 ref="formLastname"
                 type="text"
                 v-model="form.lastname"
-                placeholder="성 입력"
+                :placeholder="$t('users_lastname')"
               />
               {{ errors[0] }}
             </label>
           </ValidationProvider>
           <ValidationProvider
             ref="validationFormUsername"
-            name="회원이름"
+            :name="$t('users_username')"
             rules="required"
             v-slot="{ errors }"
           >
             <label>
-              회원이름
+              {{ $t("users_username") }}
               <input
                 ref="formUsername"
                 type="text"
                 v-model="form.username"
-                placeholder="회원이름 입력"
+                :placeholder="$t('users_username')"
               />
               {{ errors[0] }}
             </label>
           </ValidationProvider>
           <ValidationProvider
             ref="validationFormLanguege"
-            name="언어"
+            :name="$t('users_languege')"
             rules="required"
             v-slot="{ errors }"
           >
             <label>
-              언어
+              {{ $t("users_languege") }}
               <input
                 ref="formLanguege"
                 type="text"
                 v-model="form.languege"
-                placeholder="언어 입력"
+                :placeholder="$t('users_languege')"
               />
               {{ errors[0] }}
             </label>
           </ValidationProvider>
           <ValidationProvider
             ref="validationFormCountry"
-            name="언어"
+            :name="$t('users_country')"
             rules="required"
             v-slot="{ errors }"
           >
             <label>
-              언어
+              {{ $t("users_country") }}
               <input
                 ref="formCountry"
                 type="text"
                 v-model="form.country"
-                placeholder="언어 입력"
+                :placeholder="$t('users_country')"
               />
               {{ errors[0] }}
             </label>
           </ValidationProvider>
           <ValidationProvider
             ref="validationFormStatus"
-            name="상태"
+            :name="$t('users_status')"
             rules="required"
             v-slot="{ errors }"
           >
             <label>
-              상태
+              {{ $t("users_status") }}
               <input
                 ref="formStatus"
                 type="text"
                 v-model="form.status"
-                placeholder="상태 입력"
+                :placeholder="$t('users_status')"
               />
               {{ errors[0] }}
             </label>
           </ValidationProvider>
 
-          <button type="submit" :disabled="invalid || formWait"></button>
-        </form>
+          <b-button type="submit" :disabled="invalid || formWait">
+            <b-spinner
+              v-if="formWait && formAction == 'onSubmit'"
+              small
+            ></b-spinner
+            >{{ id ? $t("modify") : $t("add") }}
+          </b-button>
+          <b-button type="reset" :disabled="formWait">{{ $t("cancel") }}</b-button>
+          <b-button
+            v-if="id"
+            type="button"
+            @click.prevent.stop="remove"
+            :disabled="formWait"
+          >
+            <b-spinner
+              v-if="formWait && formAction == 'remove'"
+              small
+            ></b-spinner
+            >{{ $t("remove") }}
+          </b-button>
+        </b-form>
       </ValidationObserver>
     </div>
   </div>
