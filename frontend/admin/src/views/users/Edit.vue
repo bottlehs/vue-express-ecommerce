@@ -25,17 +25,17 @@
           </ValidationProvider>
           <ValidationProvider
             ref="validationFormPassword"
-            :name="$t('users_password')"
+            :name="$t('user_password')"
             rules="required"
             v-slot="{ errors }"
           >
             <label>
-              {{ $t("users_password") }}
+              {{ $t("user_password") }}
               <input
                 ref="formPassword"
                 type="password"
                 v-model="form.password"
-                :placeholder="$t('users_password')"
+                :placeholder="$t('user_password')"
               />
               {{ errors[0] }}
             </label>
@@ -198,6 +198,7 @@ export default {
        * item : 응답 데이터
        * wait : 로딩
        * formWait : 폼 로딩
+       * formAction : 폼 액션
        * form : 폼
        */
 
@@ -205,6 +206,7 @@ export default {
       item: {},
       wait: false,
       formWait: false,
+      formAction: "",
       form: {
         /**
          * email : 이메일
@@ -261,6 +263,92 @@ export default {
     /**
      * methods
      */
+    async onSubmit(evt) {
+      evt.preventDefault();
+
+      this.formWait = true;
+      this.formAction = 'onSubmit';
+
+      let params = {
+        email: this.form.email,
+        password: this.form.password,
+        firstname: this.form.firstname,
+        lastname: this.form.lastname,
+        username: this.form.username,
+        languege: this.form.languege,
+        country: this.form.country,
+        status: this.form.status
+      };
+
+      if (this.id) {
+        // 수정
+        UsersService.modify(this.id, params).then(
+          response => {
+            const { data } = response;
+            this.item = data;
+
+            alert(this.$t("successful"));
+            this.$router.go(-1);
+
+            this.formWait = false;
+          },
+          error => {
+            alert(this.$t("failure"));
+            console.log(error);
+          }
+        );
+      } else {
+        // 등록
+        UsersService.add(params).then(
+          response => {
+            const { data } = response;
+            this.item = data;
+
+            alert(this.$t("successful"));
+            this.$router.go(-1);
+
+            this.formWait = false;
+          },
+          error => {
+            if (
+              Object.prototype.hasOwnProperty.call(response.data, "message")
+            ) {
+              alert(response.data.message);
+            } else {
+              alert(this.$t("failure"));
+            }
+            console.log(error);
+          }
+        );
+      }
+    },
+    onReset(evt) {
+      evt.preventDefault();
+
+      this.$router.go(-1);
+    },
+    remove() {
+      if (confirm(this.$t("remove_text"))) {
+        this.formWait = true;
+        this.formAction = 'remove';
+
+        UsersService.remove(this.id).then(
+          response => {
+            const { data } = response;
+            this.item = data;
+
+            alert(this.$t("successful"));
+            this.$router.go(-1);
+
+            this.formWait = false;
+          },
+          error => {
+            alert(this.$t("failure"));
+            console.log(error);
+          }
+        );
+      }
+    },
     findOne() {
       this.wait = true;
       UsersService.findOne(this.id).then(
