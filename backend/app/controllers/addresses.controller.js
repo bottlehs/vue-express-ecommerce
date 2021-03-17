@@ -25,76 +25,76 @@ exports.create = (req, res, next) => {
         return;
       });
   }
-    
+
   if (!req.body.title) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
+  }
 
   if (!req.body.name) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
-  
+  }
+
   if (!req.body.email) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
-  
+  }
+
   if (!req.body.tel) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
-  
+  }
+
   if (!req.body.address) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
-  
+  }
+
   if (!req.body.detailAddress) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
-  
+  }
+
   if (!req.body.postcode) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
-  
+  }
+
   if (!req.body.memo) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
-  
+  }
+
   if (!req.body.status) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }  
-  
+  }
+
   if (!req.body.basic) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
-  }    
+  }
 
   // Create a Address
   const addresses = {

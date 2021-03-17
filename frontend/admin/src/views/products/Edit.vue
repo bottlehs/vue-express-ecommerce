@@ -5,13 +5,6 @@
     </div>
     <div v-else>
       <ValidationObserver v-slot="{ invalid }">
-
-        /**
-         * usersId: users id (후보키)
-         * name: 상품명
-         * status: 상태
-         */
-
         <b-form @submit.prevent="onSubmit" @reset="onReset">
           <ValidationProvider
             ref="validationFormUsersId"
