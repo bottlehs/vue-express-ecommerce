@@ -1,6 +1,6 @@
-# OTT-COMMUNITY-WEBAPP
+# VUE-EXPRESS-ECOMMERCE
 
-- STOCK-COMMUNITY-WEBAPP 개발 관련 내용을 기술한다.
+- VUE-EXPRESS-ECOMMERCE 개발 관련 내용을 기술한다.
 
 # 이력
 
@@ -14,6 +14,7 @@
   <!-- blank line -->
 
 - 환경
+
   - windows 10, mac
   - visual studio code
   - github v2.1.3
@@ -88,7 +89,7 @@
 
 - 해당 브랜치 구조는 git-flow 정책을 따름
 
-- 브랜치 구조  
+- 브랜치 구조
   feature - develop - release - tag - master - hotfix
   - feature : 테스크 단위 브랜치
   - develop : 전체 개발 단위 브랜치
